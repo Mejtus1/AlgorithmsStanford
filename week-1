@@ -1,0 +1,52 @@
+Algorithms Stanford University 
+
+GRADE SCHOOL ALGORITHM 
+- algorithm for multiplying 2 numbers
+- 3rd grade one 
+   
+     5678
+    *1234
+    -----
+    22712  (2n operations per row)
+   17034-
+  11356--
+  5678--- 
+ --------- (addition is another operations that need to be done)
+  7006652
+
+- as number of digits in input grows, number of operations grade school algorithm performs grows like some constant
+- if we double the size of digits in each of two integers, number of operations will go up by factor of 4
+- if we quadrouple input length, number of operations is going to go up by factor of 16
+
+KARATSUBA MULTIPLICATION ALGORITHM 
+
+    20 
+   *31
+   ---
+    20
+   60
+  -----
+   620
+        n2 (squared) = number of digits * number of pairs 
+
+KARATSUBA way: 
+    20
+   *31
+   ---
+  (2+0)
+  (3+1)
+  -----
+  (2+0)*(3+1)
+2*3+2*1+3*0+0*1
+-2*3       -0*1
+---------------
+ 6            0 
+---------------
+     2*1+3*0
+6       2     0
+---------------
+            620
+
+Karatsuba = runtime of n1.59 (squared) compared to n2 (squared)
+
+
