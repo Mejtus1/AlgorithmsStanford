@@ -1,0 +1,87 @@
+// Bubble sort 
+// - bubble Sort is simplest sorting algorithm that works by repeatedly swapping adjacent elements if they are in wrong order
+// - not suitable for large data sets as its average and worst-case time complexity is quite high
+
+// - traverse from left and compare adjacent elements and higher one is placed at right side
+// - in this way, largest element is moved to rightmost end at first 
+// - this process is then continued to find second largest and place it and so on until data is sorted
+
+// Optimized implementation of Bubble sort
+#include <bits/stdc++.h>
+using namespace std;
+
+// An optimized version of Bubble Sort
+void bubbleSort(int arr[], int n)
+{
+	int i, j;
+	bool swapped;
+	for (i = 0; i < n - 1; i++) {
+		swapped = false;
+		for (j = 0; j < n - i - 1; j++) {
+			if (arr[j] > arr[j + 1]) {
+				swap(arr[j], arr[j + 1]);
+				swapped = true;
+			}
+		}
+
+		// If no two elements were swapped
+		// by inner loop, then break
+		if (swapped == false)
+			break;
+	}
+}
+
+// Function to print an array
+void printArray(int arr[], int size)
+{
+	int i;
+	for (i = 0; i < size; i++)
+		cout << " " << arr[i];
+}
+
+// Driver program to test above functions
+int main()
+{
+	int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+	int N = sizeof(arr) / sizeof(arr[0]);
+	bubbleSort(arr, N);
+	cout << "Sorted array: \n";
+	printArray(arr, N);
+	return 0;
+}
+
+// Advantages of Bubble Sort:
+// - easy to understand and implement
+// - does not require any additional memory space
+// - stable sorting algorithm, meaning that elements with same key value maintain their relative order in sorted output
+
+// Disadvantages of Bubble Sort:
+// - has time complexity of O(N2) which makes it very slow for large data sets
+// - is comparison-based sorting algorithm, which means that it requires comparison operator to determine relative order of elements in input data set
+// it can limit efficiency of algorithm in certain cases
+
+// Some FAQs related to Bubble Sort:
+
+// What is the Boundary Case for Bubble sort? 
+// Bubble sort takes minimum time (Order of n) when elements are already sorted. 
+// Hence it is best to check if array is already sorted or not beforehand, to avoid O(N2) time complexity
+
+// Does sorting happen in place in Bubble sort?
+// Yes, Bubble sort performs swapping of adjacent pairs without use of any major data structure. 
+// Hence Bubble sort algorithm is an in-place algorithm.
+
+// Is the Bubble sort algorithm stable?
+// Yes, the bubble sort algorithm is stable.
+
+// Where is the Bubble sort algorithm used?
+// Due to its simplicity, bubble sort is often used to introduce the concept of a sorting algorithm. 
+// In computer graphics, it is popular for its capability to detect a tiny error (like a swap of just two elements) 
+// in almost-sorted arrays and fix it with just linear complexity (2n). 
+
+// Example: 
+// It is used in a polygon filling algorithm, where bounding lines are sorted by their x 
+// coordinate at a specific scan line (a line parallel to the x-axis), and with incrementing y 
+// their order changes (two elements are swapped) only at intersections of two lines.
+
+
+
