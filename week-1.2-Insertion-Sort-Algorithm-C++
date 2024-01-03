@@ -1,0 +1,89 @@
+// Insertion sort
+// - insertion sort is simple sorting algorithm that works similar to way you sort playing cards in your hands 
+// - array is virtually split into sorted and unsorted part
+// - values from unsorted part are picked and placed at correct position in sorted part
+
+// - to sort array of size N in ascending order iterate over array and compare current element (key) to its predecessor 
+// - if key element is smaller than its predecessor, compare it to elements before
+// - move greater elements one position up to make space for swapped element
+
+// C++ program for insertion sort
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to sort an array using
+// insertion sort
+void insertionSort(int arr[], int n)
+{
+	int i, key, j;
+	for (i = 1; i < n; i++) {
+		key = arr[i];
+		j = i - 1;
+
+		// Move elements of arr[0..i-1],
+		// that are greater than key, 
+		// to one position ahead of their
+		// current position
+		while (j >= 0 && arr[j] > key) {
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+	}
+}
+
+// A utility function to print an array
+// of size n
+void printArray(int arr[], int n)
+{
+	int i;
+	for (i = 0; i < n; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+}
+
+// Driver code
+int main()
+{
+	int arr[] = { 12, 11, 13, 5, 6 };
+	int N = sizeof(arr) / sizeof(arr[0]);
+
+	insertionSort(arr, N);
+	printArray(arr, N);
+
+	return 0;
+}
+
+// Complexity Analysis of Insertion Sort:
+// - time Complexity of Insertion Sort
+// - worst-case time complexity of Insertion sort is O(N^2)
+// - average case time complexity of Insertion sort is O(N^2)
+// - time complexity of best case is O(N)
+
+// Space Complexity of Insertion Sort
+// - auxiliary space complexity of Insertion Sort is O(1)
+
+// Characteristics of Insertion Sort
+// - this algorithm is one of simplest algorithms with simple implementation
+// - basically, Insertion sort is efficient for small data values
+// - insertion sort is adaptive in nature, i.e. it is appropriate for data sets that are already partially sorted.
+
+// Frequently Asked Questions on Insertion Sort
+// Q1. What are the Boundary Cases of the Insertion Sort algorithm?
+// Insertion sort takes maximum time to sort if elements are sorted in reverse order. 
+// And it takes minimum time (Order of n) when elements are already sorted. 
+
+// Q2. What is the Algorithmic Paradigm of the Insertion Sort algorithm?
+// The Insertion Sort algorithm follows an incremental approach.
+
+// Q3. Is Insertion Sort an in-place sorting algorithm?
+// Yes, insertion sort is an in-place sorting algorithm.
+
+// Q4. Is Insertion Sort a stable algorithm?
+// Yes, insertion sort is a stable sorting algorithm.
+
+// Q5. When is the Insertion Sort algorithm used?
+//Insertion sort is used when number of elements is small. 
+// It can also be useful when input array is almost sorted, and only few elements are misplaced in complete big array.
+
