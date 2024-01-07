@@ -49,4 +49,248 @@ KARATSUBA way:
 
 Karatsuba = runtime of n1.59 (squared) compared to n2 (squared)
 
+// ---------------------------------------------------------------------------------------------------------------
 
+Big O notation 
+- most fundamental tool for computer scientists to analyze cost of algorithm
+- mathematical notation which describes complexity of code using algebraic terms 
+- especially time complexity of an algorithm 
+
+Sorting Algorithms 
+- what is it like to analyze an algorithm 
+- popular algorithms: 
+
+Merge sort
+- algorithm from 1945 
+- one of basic choices for sorting (even if it is an old one)
+
+Divide-and-Conquer algorithm design paradigm
+- you take problem, break it down into smaller sub problems which you then solve recursively,
+then you combine results of smaller sub-problem to get solution to original problem 
+that will exhibit very clear what paradigm is, what analysis and challenge it presents, 
+and what kind of benefits you might derive
+
+- Merge Sort is better than lot of sort of simpler sorting algorithms
+"Selection Sort"
+- number of passes through way repeatedly, identifying minimum of elements that you haven't looked at yet,  
+- basically linear number of passes each time doing minimum computation
+"Insertion Sort"
+- used in certain cases
+- not as good as merge sort 
+- repeatedly maintain invariant prefix view of array = sorted version of those elements
+- after ten loops of Insertion Sort = invariant of whatever first ten elements of array are going to be in sorted order
+then when Insertion Sort completes, you'll have entire sorted array
+"Bubble Sort" 
+- identify adjacent pairs of elements which are out of order and then do repeated swaps until in end array is completely sorted
+
+//-----------------------------------------------------------------------------------------------------------------------------
+1.1 Selection Sort 
+2, 8, 5, 3, 9, 4, 1 
+- we want increasing order 
+- during each iteration well select smallest item from unsorted partition of array and move it to sorted partition
+- we set the current minimum to first number in sorted partition
+2, 
+2, 8 < 2 no, 5 < 2 no, 3 < 2 no, 9 < 2 no, 4 < 2 no, 1 < 2 yes
+- what happens now is 1 and 2 exchange places
+1, 8, 5, 3, 9, 4, 2
+- 8 is not set as current minimum and we are scanning the array for smaller number 
+- current minimum is updated as we progress
+- ncm = new current minimum
+1, 8, 8 > 5 yes (ncm) , 5 > 3 (ncm), 3 > 9 no, 3 > 4 no, 3 > 2 yes (ncm),
+- and end we find 2 and move it to 8ts place 
+1, 2, 5, 3, 9, 4, 8
+5, 5 > 3 yes (ncm), 3 > 9 no, 3 > 4 no, 3 > 8 no, 
+- 3 takes third place where we had 5
+1, 2, 3, 5, 9, 4, 8,
+5 > 9 no, 5 > 4 yes (ncm), 5 > 8 no 
+- 5 takes 4ourth place and changes with 4
+1, 2, 3, 4, 9, 5, 8
+9 > 5 yes (ncm), 5 > 8 no 
+- 5 takes 5th places and chagnes with 9
+1, 2, 3, 4, 5, 9, 8
+9 > 8 yes (ncm)
+- 9 changes with 8 and is set to 6th place 
+1, 2, 3, 4, 5, 8, 9 
+
+hard code version of selection sort algorithm
+for (j = 0; j < n-1; j++)
+    int iMin = 1;
+    for (i = j+1; i < n; i++)
+      if (a[i] < a[iMin])
+        iMin = i; 
+    if (iMin !=j)
+        swap(a[j], a[iMin]); 
+
+- selection sort have TIME COMPLEXITY of Big O notation 
+0(n2) (n to the power of 2), n = size of array 
+
+//-----------------------------------------------------------------------------------------------------------------------------
+1.2 Insertion Sort 
+- increasing order
+- examine each item and compare it to items on its left
+- insert the item in correct position in array 
+2, 8, 5, 3, 9, 4
+- we start with 2
+- there are no items to left of 2, so 2 is marked as sorted
+- next 8 
+- same as with 2, for now left in place as sorted
+- next 5 
+- needs to be after 2, so it is swapped with sorted 8
+(2, 5, 8, sorted for now) 3, 9, 4 (not sorted for now)
+- next 3
+- gets swapped with 8 and 5 to correct position after 2 (it takes computational power to swap with 8 and 5)
+- next 9 
+- correct spot for now 
+- next 4 
+- gets swaped with 9, 8, 5, and is placed after 3 
+2, 3, 4, 5, 8, 9
+
+- one of most straightforward sorting algorithms 
+
+hardcoded version of insertion sort algorithm 
+for i to length(A)-1
+  j = i 
+    while j > 0 and A[j-1]>A[j]
+      swap A[j] and A[j-1]
+        j = j - 1
+
+- insertion sort have worst case time complexity of BigO 
+- if array starts in decreasing order, we need to swap and iterate every single number
+//-----------------------------------------------------------------------------------------------------------------------------
+1.3 Bubble Sort
+- we compare consecutive numbers 
+- highest number will bubble itself to the right with each iteration 
+2, 8, 5, 3, 9, 4, 1
+2, 8, compares them, they are not bigger than one another
+8, 5, five is less than eight, five is exchanged with 8
+2, 5, 8, 3, 9, 4, 1
+8, 3, three is less than 8, exchange happens 
+2, 5, 3, 8, 9, 4, 1
+8, 9, eight is less than nine, nothing happens 
+9, 4, four is less than nine, exchange
+2, 5, 3, 8, 4, 9, 1
+9, 1 one is less than nine, exchange
+9 is now in correct spot, it is biggest number
+- first iteration is now done 
+2, 5, 3, 8, 4, 1, 9
+
+2, 5 nothing
+5, 3 exchange
+5, 8 nothing
+8, 4 exchange
+8, 1 exchange
+2, 3, 5, 4, 1, 8, 9
+- second iteration is now done 
+
+2, 3, nothing
+3, 5, nothing 
+5, 4, exchange
+5, 1, exchange
+2, 3, 4, 1, 5, 8, 9
+- 5, 8, 9 are now in correct spots 
+- third iteration is now done
+
+2, 3, nothing 
+3, 4, nothing
+4, 1, exchange
+2, 3, 1, 4, 5, 8, 9
+- 4, 5, 8, 9 are now in correct positions 
+- fourth iteration is done 
+
+2, 3, nothing
+3, 1, exchange
+- 3, 4, 5, 8, 9 are now in correct positions 
+- fifth iteration is over
+
+2, 1 exchange
+- sixth iteration is over
+- our array is sorted
+
+for i from 1 to N 
+  for j from 0 to N - 1 
+    if a[j] > a[j + 1]
+      swap ( a[j], a[j + 1])
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- all of these sort algorithms lack performance (they all have in some sense quadratic running time)
+"Asymptotic Analysis", 
+- more concerned with rate of growth on algorithms performance than on things like low-order terms or on small changes in constant factors 
+sorting problem 
+- we're given input = array of N numbers in arbitrary order
+- goal is to produce output array where numbers are in sorted order 
+- example: from smallest to largest 
+
+"Sorting Problem" exercise using Merge sort
+Input: array of n numbers, unsorted                    5, 4, 1, 8, 7, 2, 6, 3 
+Output: same numbers, sorted in decreasing order       1, 2, 3, 4, 5, 6, 7, 8
+
+            5, 4, 1, 8, 7, 2, 6, 3 
+    5, 4, 1, 8               7, 2, 6, 3 
+               recursive calls 
+    1, 4, 5, 8               2, 3, 6, 7 
+                    merge
+            1, 2, 3, 4, 5, 6, 7, 8,
+- merge sort is recursive algorithm = program that calls itself
+- its purpose in life is sort given input array 
+- split array into two sides, sort left side recursivly, sort right side recursively
+
+Merge sort Explenation 
+- usually done recursively
+- divide and conquer approach 
+            2, 8, 5, 3, 9, 4, 1, 7 
+      2, 8, 5, 3,           9, 4, 1, 7, 
+    2, 8,     5, 3,       9, 4,      1, 7, 
+  2,     8,  5,    3,    9,    4,   1,    7, 
+- array now broken down into individal items
+- we are ready to sort
+- now examine individual items, compare their values and merge them into temporary arrays 
+     2,8,     3, 5,       4, 9,       1, 7, 
+- recursion continues, smaller arrays are put together into larger ones IN CORRECT ORDER
+        2, 3, 5, 8,         1, 4, 7, 9,
+- last merge and array is sorted
+             1, 2, 3, 4, 5, 7, 8, 9
+ 
+
+- hardcoded version of merge sort algorithm 
+
+mergesort (array a)
+    if(n==1)
+        return a 
+
+    arrayOne = a[0] ... a[n/2]
+    arrayTwo = a[n/2+1] ... a[n]
+
+    arrayOne = mergesort(arrayOne)
+    arrayTwo = mergesort(arrayTwo)
+
+    return merge (arrayOne, arrayTwo)
+
+merge(array a, array b)
+    array c 
+
+    while(a and b have elements)
+        if(a[0]>b[0])
+            add b[0] from b
+        else 
+            add a[0] to the end of c 
+            remove a[0] from a 
+
+    // At this point either a or b is empty
+
+    while(a has elements)
+        add a[0] to the end of calls
+        remove a[0] from a 
+
+    while(b has elements)
+    add b[0] to the end of c 
+    remove b[0] from b 
+
+    return c
+
+- first part is recursive part 
+- second part is merge part which combines the arrays 
+- 0(nlogn)
+- n = our input at recursive part array
+- logn = maximum height binary tree we create
+- effecient and used quite often in large datasets bacause of better runtime than n2 algorithms 
