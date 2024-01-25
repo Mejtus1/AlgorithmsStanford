@@ -294,3 +294,29 @@ merge(array a, array b)
 - n = our input at recursive part array
 - logn = maximum height binary tree we create
 - effecient and used quite often in large datasets bacause of better runtime than n2 algorithms 
+
+How many levels does recursion tree have (as a function of n, the length of the input array)
+log2n, log2n + 1 to be exact 
+
+What is the pattern ? Fill in the blanks in the following statement: at each level j=0,1,2,..,log2(n) there are _____ subproblems, each of size ______.
+2 to the power of j, n/ 2 to the power of j respectively
+- there's precisely 2 to the j distinct subproblems 
+- there is one outermost subproblem at level zero
+- it has two recursive calls, those are subproblems at level one, and so on
+- in general, since MergeSort calls itself twice, number of subproblems is doubling each level, so that gives us expression 2 to j for number of subproblems at level j
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+GUIDING PRINCIPLES FOR FAST ALGORITHMS 
+1. guiding principal 
+- pursue worse case analysis. 
+- look to bounds on performance, on running time of algorithm which make no domain assumptions, which make no assumptions about which input of given length algorithm is provided 
+2. guiding principal 
+- we're not going to focus on constant factors or lower returns, that would be inappropriate, given level of granularity at which we're describing algorithms 
+3. guiding principal
+- focus on rate of growth of algorithms for large problem sizes
+
+Putting these three principles together, we get mathematical definition of fast algorithm. 
+= pursue algorithms whose worst case running time grows slowly as function of input size
+
+
