@@ -1,0 +1,198 @@
+//-----------------------------------------------------------------------------------------------------------------------------
+MERGE SORT EXPLAINED in DEPTH 
+
+- logarithmic algorithms 
+- faster sorting algorithms 
+- in easy way, merge sort works by spliting until reached a base case
+(base case = [] empty array, [1] one element in array, number 2 split into two 1s (1 = base case of 2))
+
+In merge sort there are 2 sub routines
+1. Split
+2. Merge
+
+1. Split sub-routine 
+n = 8 
+
+          8  
+     4          4
+  2    2     2     2
+1  1  1  1  1  1  1  1 
+
+- we have split left and right portion to their base case
+- in merge sort we have sorted parts of input array n and they later merge and sort together
+- base cases have an answers and return it upwards
+- we have 3 splits, number of n 
+          8    
+     4          4          #1. split 
+  2    2     2     2       #2. split   = log(n) = log(8) = 3 and 3 = our splits 
+1  1  1  1  1  1  1  1     #3. split 
+- logarithms are essential for merge sort, because we just cut in half our n values 
+
+                [38,27,43,3,9,82,10]
+        [38,27,43,3]             [9,82,10]
+    [38,27]      [43,3]       [9,62]     [10]
+  [38]   [27]  [43]   [3]    [9]  [82]     [10]
+    [27,38]      [3,43]       [9,82]     [10]
+        [3,27,38,43]             [9,10,82]
+                [3,9,10,27,38,43,82]
+
+2. Merge part 
+
+Marge and recurrence part 
+n = length of combined arrays 
+n = 6 length of both lists combined 
+
+Q1 =  1 2 3 
+Q2 = -1 0 6 
+
+compare lists MARGE PART 
+-1 and 1 
+= -1           1. comparison 
+1 and 0 
+= 0            2. comparison
+1 and 6 
+= 6            3. comparison 
+2 and 6 
+= 2            4. comparison 
+3 and 6 
+= 3            5. comparison 
+- we dont do comparison with 6, we just place it in last place 
+- both lists are exhausted, we have done the sorting 
+TOTAL COMPARISONS 5 which means n-1 comparisons in the worst case 
+ANSWER: 
+The merge function where n is the length of both lists combined has worst time complexity of n-1 comparisons
+
+RECURRENCE PART 
+- all recurrence is is defining what the result of the subproblem is 
+- 
+- how much work do I do when I'm merging n-1 comparisons 
+
+T(1) = 0 
+- T of 1 is zero, because we dont do any work when passed into merge function 
+- T of 1 is zero comparisons 
+- this is base case 
+
+OUR EXAMPLE: 
+T(n) = T(n/2)+T(n/2)+(n-1)
+- we can merge together T(n/2) and write it as 2T(n/2)
+T(n) = 2T(n/2)+(n-1)
+- all we do is split functions, merging -> split functions, merging
+
+T(8) = 2T(8/2)+(8-1)
+T(8) = 2T(4)  +  7
+- we dont know what T(4) is 
+- we know recursive definition
+Recursion
+- is process of defining problem in terms of (simpler version of) itself
+- Merge sort is recursive algorithm that continually splits list in half. 
+- if list is empty or has one item, it is sorted by definition (base case)
+- if list has more than one item, we split the list and recursively invoke merge sort on both halves
+T(8) = 2T(4)  +  7
+       2T(4/2) + (4-1)      recursive definition 
+       2T(2)   +   3 
+       2T(2/2) + (2-1)      recursion
+       2T(1)   +  1         2T(1) is zero, this is our base case "2T(1) = 0"
+           0   +  1         now we will do our recursion upwards 
+           1 
+        2(1)+3 = 2          2T(2)   +   3
+           2   +   3 
+           5
+        2(5)  +  7          2T(4)  +  7 // five comarisons in worst case 
+        10    +  7   
+           17 
+        T(8) + 17 
+- what we have is 17 comparisons in worst cast when input size is 8 
+
+RECURRENCE 
+n = 8 
+T(8) = 17 comparisons 
+
+- recursive tree in terms of n 
+         n                       1(n-1)      - 1 because we have 1 subproblem
+    n/2      n/2                 2(n/2 -1)   - we cannot put n there, because we split downwards 
+ n/4  n/4  n/4 n/4               4(n/4 -1)
+...   ...  ... ...               .........   - we dont want to hard concrete these numbers 
+        i = level                            - expressed this in terms of n 
+- we need to keep in mind that n is part of list, and n/2 is list split in half 
+
+1(n-1)     //   2 to power of 0(n-1)    //   2 to power of 0(n2 to power of 0 -1)
+2(n/2 -1)  //   2 to power of 1(n/2-1)  //   2 to power of 1(n2 to power of 1 -1)
+4(n/4 -1)  //   2 to power of 2(n/4-1)  //   2 to power of 2(n2 to power of 2 -1)
+i = level                               - we exchange i for power of 2 in our formula
+- we take the sum of all the work we did in all algorithm
+new formula we have is: 2 to the power of i(n/2 to the power of i - 1)
+
+SUMMATION: 
+log(n) - 1 
+------                    
+\
+/      2(n/2i - 1)
+------ 
+i = 0 
+
+        8            0 tree level            -->   expressed in terms of log == log(8) = 3
+   4          4      1 tree level            -->                                3 - 1 =  2*****
+2    2     2     2   2 tree level (second level) = 2*****     
+- they both end up number 2, so we can express it with log in our SUMMATION 
+      
+
+log(n) - 1 
+------                    
+\
+/      2(n/2i - 1)
+------ 
+i = 0  ------                    
+       \
+       /      (2i(n)/2i - 2i)       - 2i gets subtracted 
+       ------
+            ------                    
+             \
+             /      n - 2i
+            ------ 
+                 ------     ------                 
+                 \          \
+                 /     n  - /      2i
+                 ------     ------
+
+LEFT side    RIGHT side 
+
+log(n) - 1   log(n) - 1 
+------       ------                 
+\            \
+/     n  -   /      2i
+------       ------
+ i = 0       i = 0 
+- simplyfing LEFT SIDE SUMMATION 
+n (((log(n)-1) - (0) ) + 1)    
+- log(n) -1 +1 is zero 
+- log(n) - 0 is zero 
+- which leaves us with:
+n log(n)
+- OUR HIGHEST ORDER TERM IN WORST CASE is "n log(n)", this is reason BIG O is "n log(n)"
+
+- simplyfing RIGHT SIDE SUMMATION 
+(1+2+4... +2log(n-1))
+- this is 
+r = 2, k = log(n) - 1
+if r > 1     
+               r(k+1) - 1 
+               ----------
+                  r - 1 
+- now we simplify and plug in r, k 
+(2) ((log(n) - 1) + 1) - 1 
+--------------------------
+         (2) - 1 
+
+(2) log n - 1 
+-------------     - when we have this case we just reap number within log 
+      1           - (2) log n becomes n 
+- what we are left with is (n - 1)
+RIGHT      LEFT   side 
+n log(n) - n + 1 comparisons 
+- now we have CONCRETE MATHEMATICAL STATEMENT 
+
+n = 8 
+8 log(8) - 8 + 1 
+  8(3) - 7 
+    24 - 7 
+      17 = NUMBER OF COMPARISONS we need if our array n = 8, has 8 inputs we are trying to sort 
