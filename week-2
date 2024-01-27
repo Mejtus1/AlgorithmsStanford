@@ -1,0 +1,13 @@
+Asymptotic Analysis 
+- provides basic vocabulary for discussing the design and analysis of algorithms
+- it is a sweet spot for high level reasoning about algorithms 
+- coarsse enough to suppress architecture/language compiler dependent details 
+- sharp enough to make algorithms useful comparisons between different algorithms, especially large inputs (sorting, integer multiplication)
+- high level programmes will tell you, asymptotic analysis supresses constant factors and lower order terms
+- lovel order terms become irrelevant for large inputs 
+- constant factors are too dependent on the environment 
+
+Example:
+- equate 6n log2n + 6n with just n log n 
+6n log2n +6n 
+- we drop 6n 
