@@ -7,7 +7,51 @@ Asymptotic Analysis
 - lovel order terms become irrelevant for large inputs 
 - constant factors are too dependent on the environment 
 
-Example:
+Big O notation examples 
+
+Example 1 :
 - equate 6n log2n + 6n with just n log n 
 6n log2n +6n 
-- we drop 6n 
+- we drop 6n with suppression and we are left with much simplier expression n klog(n)
+where n = input size 
+
+Example 2:
+- does array A contain integer t ? Given A = array of length n, t = an integer 
+for i = 1 to n 
+    if A[i] == t + return TRUE 
+return FALSE 
+Question: What is the running time ? 
+O(n) - running time of algorithm is linear with input length n 
+
+Example 3: 
+- given A,B arrays of length n and t = an integer 
+- does A or B contain t ? 
+for i = 1 to n 
+    if A[i] == t + return TRUE 
+for i = 1 to n 
+    if B[i] == t + return TRUE 
+return FALSE 
+O(n) - linear algorithm
+
+Example 4: 
+- two nested loops 
+- do arrays A,B have a number in common ? given arrays A,B length n 
+for i = 1 to n 
+  for j = 1 to n 
+    if A[i] == B[j] return TRUE 
+return FALSE 
+running time ? = O(n2) squared = quadratic running time algorithm
+- with each iteration of outer for loop, we do each iteration of inner for loop, this gives us running time of n2 suquared 
+
+Example 5: 
+- does array A have duplicate entries ? given array A of length n 
+- althrough for loops look similar, this time we look for duplicate values 
+- i + 1 = because otherwise we would compare each element inside arrays twice, we need to only compare them once 
+for i = 1 to n 
+  for j = i + 1 to n 
+    if A[i] == A[j] return TRUE 
+return FALSE 
+running time ? 
+running time ? = O(n2) squared = quadratic running time algorithm
+
+
