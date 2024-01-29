@@ -42,3 +42,58 @@ factorial time: O(n!)
 exponential time: O(2^n)
 - we are describing a class of functions, a class of behaviors 
 
+// ----------------------------------------------------------------------------------------------
+Asymptotic Bounds 
+- basic way asymtotic bounds work, is: 
+
+O(n)
+- everytime we have piece of code or algorithm, they consume resources
+- these resources are Time, or Space 
+- our rob is to analyze how much job does this algorithm take 
+- more we understand how our algorithm behaves, functions and is made of 
+more we can improve it 
+
+Asymptotic 
+- nature of a graph or function as it reaches untouchable bound
+- very large n value can show us how our algorithm behaves with unimaginable values 
+T(n) = function, when we move n up or down, the output of that function changes 
+T = Time 
+n = space 
+
+Big O 
+- it is upperbound, upperbounding work 
+- mathematical definition of big O 
+T(n)            
+is O(f(n)) iff - T of n is upperbounded if
+T(n) <= c*f(n) - T of n is less than or equal to some constant c * f(n), the function we choose to bound with 
+for all n >= n 
+WHAT DOES THIS MEAN ? 
+
+- we have class of functions of how we can bound 
+log n time: O(log(n))
+linear time: O(n)
+quadratic time: O(n^2)
+qubic time: O(n^3)
+factorial time: O(n!)
+exponential time: O(2^n)
+- example: 
+- defining a function that might bound T(n) lower on the graph than 
+n2 vs T(n) 
+f(n) = n2
+- raw n2 function multiplied by c = 1 constant, it is lowerbound than T(n) on graph 
+- now are we able to modulate 1*n2 to that T(n) is in constant state under it on graph ? 
+c = 100
+f(n) = n2 
+- if we take all n values, will T(n) always stay below n2 bounding function ? 
+- yes 
+This function is upperbounded
+
+Bounding and Tight
+- when we perform bounding we want to be as tight and exact as possible to dont have all extra 
+wasted space between T(n) and function 
+- O(n) function 
+f(n) = n 
+c = 1 
+- T(n) is still below T(n)
+c = 1000
+- T(n) is upperbound, but this is big value 
