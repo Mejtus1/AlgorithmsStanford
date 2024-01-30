@@ -54,4 +54,28 @@ return FALSE
 running time ? 
 running time ? = O(n2) squared = quadratic running time algorithm
 
+// --------------------------------------------------------------------------------------
+Bih-Oh Notation 
+- let T(n) = function on n = 1,2,3,.... [usually worst case running time of an algorithm]
+
+When is T(n) = O(f(n)) ? 
+- for all suffiecently large values of n, T(n) is bounded above by constant multiple of f(n)
+
+Example: 
+(graphs)
+T(n) on graph 
+F(n) on graph, below T(n)
+- but when we double 2f(n), it crosses T(n) and forever is larger than T(n)
+- in this event constant multiple times of f(n), twice f(n), is upper bound of T(n)
+Formal definition in mathematics: 
+T(n) = O(f(n)) if and only if there exist constants c, no > O so that T(n) <= c f(n)
+for all n >= no 
+c = constant multiple of f(n)
+no = quantyfing suffiecently large 
+
+- in upper example: 
+c = 2 
+no (n o) = crossing point where 2F(n) and T(n) cross 
+
+Warning: c, no cannot depend on n
 
