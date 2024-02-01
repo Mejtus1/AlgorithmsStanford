@@ -152,3 +152,82 @@ c = 1/2*2   - lowerbound
 - we proved that f(n) is fit function, because of our ability to choose correct c values
 - we can tightly bound to the linear order of time, where f(n) is upperbound and lowerbound 
 
+// ----------------------------------------------------------------------------------------------
+// BIG O NOTATION and Time complexities 
+- how does algorithm speed scale and input scale when becoming very large 
+- example O(n2 squared) vs O(n): at the beginning there is not much difference,
+but after input gets larger, the O(n) scales much better than O(n2) squared
+- it is called asymtotic complexity, because we are looking at the behavior of graph as input 
+scales very large
+- we know that linear O(n) is never gonna pass O(n2) function 
+- mistake is when we have 2 inputs, we need to factor them in (m, n)
+- min, max notation when we want wo use larger, smaller string, input 
+O(max(m,n)) - O of max m,n 
+O(min(m,n)) - O of min m,n
+
+Time Complexity 
+O(1) "constant time" - as algorithm gets very large input, runtime is the same 
+- in Big O we worry about tail behavior on graph 
+
+1. O(log(n)) "Logarithmic Time"
+- normally log by 2 
+- looks like logarithm on a graph 
+log(16) = 4, because 2 to the power of 4 is 16 == halving
+
+Binary search 
+- balanced binary search 
+- search tree traversal
+
+2. O(n) "Linear Time"
+- common 
+- n tree notes, n array elements
+
+3. O(n*log(n))
+What does this mean ? - 3 levels of work (log levels of work, for each level we have)
+- fast sorting 
+- merge sort, quick sort 
+
+Merge sort 
+log(8) = 3 
+n = [1,3,2,5,7,8,2,9]
+n = 8 
+      [1,3,2,5] [7,8,2,9]         1. 
+    [1,3] [2,5] [7,8] [2,9]       2. 
+[1] [3] [2] [5] [7] [8] [2] [9]   3. 
+
+4. O(n2) squared 
+- naive solution 
+- naive sorting algorithms: bubble sort, selection sort, insertion sort 
+
+[1,2,3,4]
+ 3 2 1 0 - comparisons 
+O(n2/2) = O 1/2 n2 = O(n squared) - because constant gets dropped 
+
+5. O(2 power of n) "Exponential Time"
+- backtracking problems, subsets 
+
+6. O(n!) "n-fractional"
+- permutations 
+
+       " cat "
+    |     |      | 
+c "at"  a "ct"  t "ca"        3. forks 
+ ---     ---     ---             .
+|     |   ................       . 
+ca"t" ct"a"                   2. forks 
+                                 .
+                              1. factorial
+3 x 2 x 1 = 3! factorial = n! - we get n factorial time here for permutation problem 
+
+Space Complexity and Time Complexity
+- optimizing time or space 
+- we can lower time complexity and up space complexity
+- we can increace time complexity and lower space (do more work, keep less auxilary space)
+- what makes sense ? we can buy memory, but we cant buy time = best trade of is increase SPACE, lower TIME 
+
+Space Complexity 
+- How does the space usage scale as our input gets very large ? 
+- What auxilary space does your algorithm use ? 
+
+example: 
+sorting arrays = log(n) = binary search 
