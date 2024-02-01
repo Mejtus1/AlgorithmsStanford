@@ -231,3 +231,38 @@ Space Complexity
 
 example: 
 sorting arrays = log(n) = binary search 
+
+// ----------------------------------------------------------------------------------------------
+Permutations 
+
+A,B,C,D,E
+- - - - - 
+1 2 3 4 5 
+- means how many combinations of putting these letters into brackets we have 
+- - - - - 
+5 posibilities from A,B,C,D,E for 1st brackets
+5 - - - - 
+4 posibilities from A,B,C,D,E for second bracket
+5 4 - - - 
+...
+- so the number of permutation is 5! = 5 factorial = 5x4x3x2x1 = 120 
+
+- now we have 5 letters 
+A,B,C,D,E - and only 3 brackets 
+
+- - - 
+1 2 3 
+- how many letters can we put in each bracket ? 
+- - - 
+5 4 3 = 5 x 4 x 3 = 60 permutations 
+- but how do we define our factorial when we only use 3 brackets and have 5 letters
+     5 x 4 x 3 x 2 x 1     5 x 4 x 3       5! 
+60 = ----------------- = -------------- = ----
+                              2 x 1        2!
+- we take the rest of parmutation which is 2 x 1 and place it denominator 
+               n! 
+P(n,r), nPr = ------
+              (n-r)! 
+P = letters
+n = brackets 
+- most of the time people reason permutations through and dont use a formula 
