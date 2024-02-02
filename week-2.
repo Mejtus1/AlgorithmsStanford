@@ -266,3 +266,26 @@ P(n,r), nPr = ------
 P = letters
 n = brackets 
 - most of the time people reason permutations through and dont use a formula 
+- in permutations the order matters, 
+
+A B C D 
+- - 
+- we are looking how many different ways can we arrange and combine 4 letters 
+
+AB BA CA DA
+AC BC CB DB
+AD BD CD DC
+
+- there are 12 different ways we can differentiate 2 out of 4 letters
+permutations = 12 
+P = 12 
+        n!
+nPr = --------
+       (n-R)! 
+         4!        4!
+4P2 = --------- = -----
+        (4-2)      2!
+- in longer factorial terms: 
+         4!        4x3x2x1         4x3x 
+4P2 = --------- = ----------- = ------------ = 12 
+        (4-2)         2x1 
