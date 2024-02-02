@@ -289,3 +289,42 @@ nPr = --------
          4!        4x3x2x1         4x3x 
 4P2 = --------- = ----------- = ------------ = 12 
         (4-2)         2x1 
+
+1. In how many different ways can you arrange 3 books on a shelf from a group of 7 
+- keyword arrange = permutation because the order matters 
+1 2 3 4 5 6 7 
+- - - 
+nPr
+n = 7
+P = 7
+r = 3
+        7!       7x6x5x4x3x2x1    7x6x5x
+7P3 = -------- = -------------- = ------ = 210 
+       (7-3)!      4x3x2x1
+
+2. In how many different ways can we arrange 5 books on a shelf ? 
+nPr
+n = 5
+P = 5 
+r = 5 
+          5!          5x4x3x2x1
+5P5 = ------------ = ----------- = 120 permutations 
+         (5-5)!          0!
+0! = 1 == in permutations 
+
+3. ALABAMA 
+P = 7 
+A = 4 
+
+7!      7x6x5x4! 
+-- = -------------- = 7x30 = 210 
+4!         4! 
+
+4. MISSISSIPPI 
+S = 4x 
+I = 4x 
+P = 2x 
+
+   11!     11x10x9x8x7x6x5x4x3x2x1   11 x 10 x 9 x 7 x 5
+-------- = ----------------------- = -------------------- = 34650
+4! 4! 2!   4! 4x3x2x1 2x1         
