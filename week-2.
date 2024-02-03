@@ -328,3 +328,138 @@ P = 2x
    11!     11x10x9x8x7x6x5x4x3x2x1   11 x 10 x 9 x 7 x 5
 -------- = ----------------------- = -------------------- = 34650
 4! 4! 2!   4! 4x3x2x1 2x1         
+
+// ----------------------------------------------------------------------------------------------
+Polynomials 
+Poly = many 
+nomial = names, terms 
+
+10x7power-9xsquared+15xpower3 + 9 
+9a2squared-5
+6
+7y2squared-3y+PI 
+
+- polynomial needs to have not negative numbers in powers of our polynomials 
+- we need terms in polynomials 10x7power is first term 
+- each of polynomials have a coefficient:
+10x7power, 10 is coefficient
+-x2squared, -9 is coefficient 
+...
+- polynomial is a sum inite set of terms, where each term has a coefficient, being multiplied by a variable
+and being raised to a non negative integer power 
+term = x
+coefficients = A 
+exponent = n 
+Axn
+
+10x-7power = not polynomial, because of negative exponent 
+   1
+9a--- - 5 = not polynomial, because of 1/2 fraction as exponent
+   2
+9aapower = a power non-negative integer is not exponent 
+
+6 = one term
+- if we have one term = monomial 
+- we can write it as 6x0power
+10z15power = monomial too 
+
+9a-5 = banomial
+- two terms 
+
+3x3power + 5 = trinomail
+- three terms 
+
+Degree of polynomial
+- degree is a power of which we are raising the variable to 
+10x7power = 7 degree term 
+-9x2power = 2 degree term
+9x0 = 0 degree term
+
+Degree of entire polynomial 
+- means highest degree of polynomial 
+10x7power-9xsquared+15xpower3 + 9 = 7th degree polynomial 
+3x3power + 5 = 3th degree trinomial 
+
+Leading term
+- can mean leading coefficient in first term, 
+- or standard form of polynomial 
+Standard form 
+- standard form of polynomial is terms written by polynomial value 
+- highest degree first, next decreasing degree
+10x7power-9xsquared+15xpower3 + 9
+10x7power+15xpower3-9xsquared+ 9x0
+
+Polynomials Adding, Subtracting, Multiplying and Dividing 
+
+Adding and Subtrackting Polynomials 
+(4x2squared + 5x + 7) + (3x2squared -8x +12)
+- we add and subtract terms with one onether based on degree
+7x2squared -3x + 19 
+
+(9x2squared-7x+13) - (5x2squared-7-14)
+- no number in front first parenthesis, we can get rid of it
+- because we redistribute minus and get rid of second parenthesis too 
+9x2squared + 13 -5x2squared +7x + 14 
+= 4x2squared + 27 
+
+(3x3power - 5x + 8) - (7x2squared + 6 x - 9)
+3x3power - 5x + 8 - 7x2squared -6x + 9 
+- we have only one term to the power of 3 
+- we have only one term to the power of 2
+3x3power - 7xsquared - 11x + 17 
+
+4(3x2+6x-8) -3(2x2squared -5x + 7)
+- redistribude numbers in front of parenthesis first 
+12x2squared + 24x - 32 -6x2squared + 15x -21
+6x2squared + 39x -53
+
+Multiply polynomial expressions 
+(3x+5) (2x-3)
+3x x 2x = 6x2squared
+3x x -3 = -9x
+5 x 2x = 10x
+5 x -3 = -15 
+6x2squared - 9x + 10x - 15 
+6x2squared + 1x - 15
+
+(2x-5)2squared = we have two binamials 
+= (2x-5)(2x-5)
+= 4x2squared -10x -10x + 25 
+= 4x2squared -20x + 25 
+
+(4x-2) (x2squared + 3x -5)
+- we have binomial with 2 terms and trinomial with 3 terms 
+4x x x2squared = 4x3power  
+4x x 3x = 12x2squared
+4x x -5 = -20x 
+-2 x x2 = -2x2squared
+-2 x 3x = -6x 
+-2 x -5 = 10 
+4x3power + 12x2squared - 20x - 2x2squared - 6x + 10 
+4x3power + 10x2squared - 26x + 10 
+
+(3x2squared -5x + 7) (2x2squared + 6x -4)
+3x2squared x 2x2squared = 6x4power 
+3x2 x 6x = 18x3power 
+3x2squared x -4 = - 12x2squared 
+-5x x 2x2squared = - 10x3power 
+-5x x 6x = -30x2squared 
+-5x x -4 = 20x 
+7 x 2x2squared =  14x2squared
+7 x 6x = 42x 
+7 x -4 = - 28
+6x4power + 18x3power - 12x2squared - 10x3power - 30x2squared + 20x - 14x2squared + 42x - 28
+6x4power + 8x3power - 28x2squared + 62x - 28 
+
+Dividing polynomials 
+x2squared + 7x + 12 
+------------------- 
+         x + 3 
+- we can factor 1. 
+- use long division 2.  
+- or syntax division 3. 
+
+1. to factor trinomail, we need to find two numbers that multiply by 12
+(x+3)(x+4)
+---------- = x+4 
+   x+3  
