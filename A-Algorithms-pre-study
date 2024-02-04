@@ -1,0 +1,66 @@
+1. Introduction to Algorithms 
+- algorithm is a step by step procedure of solving computational problem 
+- program is also a step by step procedure of solving a problem 
+- SDLC = software development lifecycle 
+Algorithm                     Program 
+Deisgn phase of SDLC          Implementation phase of SDLC 
+Domain knowledge              Programmer (programmer can also have domain knowledge)
+any language                  programming language 
+(or mathematical notation)
+Hardware/Software/OS          H/S/OS dependent 
+idependent 
+Analyze                       Testing 
+
+1.1 Priori analysis, Postpriori testing 
+
+Priori Analysis             Posteriori Testing
+1. Algorithm                1. Program
+2. Independent Language     2. Language dependent 
+3. Hardware Independent     3. Hardware dependent 
+4. Time & Space Function    4. Watch time & Bytes 
+
+1.2 Characteristics of Algorithm 
+
+Input (algorithm must take some input, 0 or more)
+Output (algorithm must generate at least one ouput)
+Definitness (Every statement should be ambigious, there cannot be statement that cannot be solved)
+( - we cannot use for example value root -1 because we dont know its output too, program cannot either)
+Finitness (solution must exist)
+Effectivness (there shouldnt be any unnecesarry statements)
+
+1.3 How to write an Algorithm 
+- all algorithms are procedures to solve a problem 
+Algorithm Swap(a,b)
+{ "begin" 
+    temp = a;
+    a = b;
+    b = temp;
+} "end" 
+
+How to analyze algorithm 
+main criteria: 
+1. Time (how much time is it taking)
+- algorithm should be time efficient 
+2. space (how much memory, space it will consume)
+another criteria: 
+3. data transfer, network consumption (because today everything is cloud-based)
+4. Power comsumption (because of Mobile phones, Ipads and other mobile devices)
+5. CPU register is algorithm consuming (how many resistors)
+
+- all criteria depent on project
+- every step in the algorithm takes 1 unit of time
+{ "begin" 
+    temp = a; ------ 1 
+    a = b;    ------ 1 
+    b = temp; ------ 1 
+} "end" 
+f(n) = 3 
+- when we assign our statement it also is one unit of time 
+x = 5 a + 6 b ------- 1 unit of time 
+
+space calculation: 
+a ------- 1
+b ------- 1 
+temp ----1 
+S(n) = 3 words = words, because when we convert it into program we dont know if it is going to be 
+int, float, double type 
