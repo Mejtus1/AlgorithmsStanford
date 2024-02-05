@@ -1,3 +1,4 @@
+// --------------------------------------------------------------------------------------------------------
 1. Introduction to Algorithms 
 - algorithm is a step by step procedure of solving computational problem 
 - program is also a step by step procedure of solving a problem 
@@ -11,6 +12,7 @@ Hardware/Software/OS          H/S/OS dependent
 idependent 
 Analyze                       Testing 
 
+// --------------------------------------------------------------------------------------------------------
 1.1 Priori analysis, Postpriori testing 
 
 Priori Analysis             Posteriori Testing
@@ -19,6 +21,7 @@ Priori Analysis             Posteriori Testing
 3. Hardware Independent     3. Hardware dependent 
 4. Time & Space Function    4. Watch time & Bytes 
 
+// --------------------------------------------------------------------------------------------------------
 1.2 Characteristics of Algorithm 
 
 Input (algorithm must take some input, 0 or more)
@@ -28,6 +31,7 @@ Definitness (Every statement should be ambigious, there cannot be statement that
 Finitness (solution must exist)
 Effectivness (there shouldnt be any unnecesarry statements)
 
+// --------------------------------------------------------------------------------------------------------
 1.3 How to write an Algorithm 
 - all algorithms are procedures to solve a problem 
 Algorithm Swap(a,b)
@@ -64,3 +68,114 @@ b ------- 1
 temp ----1 
 S(n) = 3 words = words, because when we convert it into program we dont know if it is going to be 
 int, float, double type 
+
+// --------------------------------------------------------------------------------------------------------
+1.4 Frequency control method
+
+Addition array 
+- we have array of size 5 
+A [8 3 9 7 2]
+A = array 
+- lets analyze time of this algorithm 
+- time of the algorithm can be known by assinging one unit of time for each statement 
+- if each statement is repeating for some number of times , the frequency of statement 
+will calculate and we will find the time taken by that algorithm 
+
+Algorithm Sum(A,n)
+{
+  s=0 ----------------- 1 unit of time 
+  for(i=0; i<n; i++) -- n+1                (i=0; i<n; i++)
+    S=S+A[i] ---------- n                    1    n+1   n 
+}                                           when n is 5
+return s; ------------- 1                   i = 0, 0 < n 
+                                            i = 1, 1 < n 
+time complexity                             i = 2, 2 < n 
+f(n) = 2n + 3 (we sum up numbers and n)     i = 3, 3 < n 
+O(n)                                        i = 4, 4 < n 
+                                            i = 5, 5 < n NOT 
+space complexity                            which is n + 1 
+- what are the variables used in here ? 
+A --- n 
+n --- 1 
+s --- 1 
+i --- 1 
+S(n) = n + 3 
+O(n)           (degree of this polynomial = O(n) = order of n)
+
+----------------------------
+Find the sum of two matrices 
+matrices = 2 dimensional arrays nxn in this example 
+
+Algorithm Add (A,B,n)
+{
+  for(i=0; i<n; i++) ------------ n + 1          (for loop time complexity)
+  {                                              (whatever is inside this loop will execute x times)
+    for(j=0; j<n; j++) ---------- n * (n + 1)    (we add n+1 times n because this is another for loop) 
+    {
+      c[i,j] = A[i,j] + B[i,j]; - n * n           (whatever is inside last one, will execute n times)
+    }
+  }
+}
+
+time complexity 
+(n + 1 + n * (n + 1) + n * n)
+f(n) = 2n2power + 2n + 1
+O(n2power)
+- we write n2squared only because of highest degree of polynomial
+
+space complexity 
+- what are the variables here, we are having: 
+A -- n2power (matrices)
+B -- n2power (matrices)
+C -- n2power (matrices)
+n -- 1 (word)
+i -- 1 (word)
+j -- 1 (word)
+--------
+s(n) = n2squared + n2squared + n2squared + 1 + 1 + 1
+S(n) = 3n2power + 3 
+- what is the highest degree of polynomial
+O(n2power)
+
+------------------------------
+Multiplication of two matrices
+
+Algorithm Multiply(A,B,n)
+{
+  for(i=0; i<n; i++)                --------- n + 1 
+  {
+    for(j=0; j<n; j++)              --------- (n + 1) * n 
+    {
+      c[i,j]=0;                     --------- n * n 
+      for(k=0; k<n; k++)            --------- (n + 1) * n * n
+      {
+        c[i,j]=c[i,j]+A[i,k]*B[k,j]; -------- n * n * n
+      }
+    }
+  }
+}
+- when we have first loop which is n + 1, we already know each statement will run at least for n times
+- we have second for loop, we can assume every other statement will be n times 
+- third loop means another n+1 on loop and last statement x times more
+
+time complexity: 
+= n + 1 + (n + 1) * n + n * n + (n + 1) * n * n + n * n * n
+= n + 1 + n2squared + 1n + n2squared + 2n3power + 1n2squared 
+= 3n2squared + 2n3power + 2n + 1  
+      {
+f(n) = 3n2squared + 2n3power + 2n + 1
+- because of highest degree of polynomial we have n3power 
+O(n3power)
+
+space comlexity: 
+A ---- n2squared 
+B ---- n2squared
+C ---- n2squared
+n ---- 1 word 
+j ---- 1 word
+k ---- 1 word
+i ---- 1 word
+S(n) = 3n2squared + 4 
+O(n2squared)
+
+// --------------------------------------------------------------------------------------------------------
