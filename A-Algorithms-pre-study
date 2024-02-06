@@ -179,3 +179,28 @@ S(n) = 3n2squared + 4
 O(n2squared)
 
 // --------------------------------------------------------------------------------------------------------
+1.5 Time Complexity #1 
+
+- increasing loop 
+for(i=0; i<n; i++) --- n + 1 
+{
+  stmt; -------------- n 
+}
+Time Complexity: O(n)
+
+- decreasing loop 
+for(i=n; i>0; i--) --- n + 1 
+{
+  stmt; -------------- n 
+}
+Time Complexity: O(n)
+
+- increasing loop by 2 
+for(i=1; i<n; i=i+2) (we can get rid of upper n+1)
+{
+  stmt; -------------- n/2  
+}
+- but since this is polynomial n/2, what is the highest degree ?
+- the highest degree of polynomial is n 
+- which means this is also: 
+Time Complexity: O(n)
