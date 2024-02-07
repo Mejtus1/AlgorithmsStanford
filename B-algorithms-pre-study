@@ -1,0 +1,5 @@
+Algorithms and Data-Structures
+
+algorithms = operations on different data structures and the sets of instructions to executing them 
+- depending on what data structure we are using to store data, that we are performing algorithm on our algorithms
+may work differently, or completly different algorithm for solving the same problem, because of data structure we are using 
