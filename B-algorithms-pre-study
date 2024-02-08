@@ -3,3 +3,37 @@ Algorithms and Data-Structures
 algorithms = operations on different data structures and the sets of instructions to executing them 
 - depending on what data structure we are using to store data, that we are performing algorithm on our algorithms
 may work differently, or completly different algorithm for solving the same problem, because of data structure we are using 
+
+
+Arrays 
+[5, 2, 300, 20] = array of integers
+["yeah", "ouch", "haha"] = array of strings 
+
+Example code of Arrays 
+int sampleArray[5] = {2, 4, 6, 8, 100}
+sampleArray[0] = 20; 
+sampleArray[1] = -5;
+{20, -5, 6, 8, 100}
+- in C we cannot add another space for array because of how memory on computer works
+
+Memory 
+Memory (RAM) = data is not permanent 
+Storage = data is permanent 
+- when we work on program in our memory, it needs to be stored in storage to be there after computer shuts down
+Why dont we use just storage ? 
+- we use memory RAM, because it is temporary and faster
+- retrieving everything from storage will be inneficient and slow
+Applications 
+- are stored in storage, because after shut down our OS they are still there
+Lounching Google chrome
+- is loaded into memory RAM, because it is faster there
+- running too much 
+
+Memory and programming 
+- we assign: 
+int a = 1;
+- if we turn off our computer, this will dissapear because it is only stored in memory 
+- each int if is stored in computer it is stored as 32 bit value:
+1 = 00000000000000000000000000000001
+2 = 00000000000000000000000000000010
+3 = 00000000000000000000000000000011
