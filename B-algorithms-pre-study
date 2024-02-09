@@ -4,7 +4,7 @@ algorithms = operations on different data structures and the sets of instruction
 - depending on what data structure we are using to store data, that we are performing algorithm on our algorithms
 may work differently, or completly different algorithm for solving the same problem, because of data structure we are using 
 
-
+// -------------------------------------------------------------------------------------------------------------------------
 Arrays 
 [5, 2, 300, 20] = array of integers
 ["yeah", "ouch", "haha"] = array of strings 
@@ -37,3 +37,52 @@ int a = 1;
 1 = 00000000000000000000000000000001
 2 = 00000000000000000000000000000010
 3 = 00000000000000000000000000000011
+
+byte 
+- small unit of data consisting of bits 
+- 1 byte = 8 bits 
+
+Memory 
+-----------------------------------------------------
+|   |   |   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |   |   |
+-----------------------------------------------------
+ 120 121 123 124 125 126 127 128 129 130 131 132 133 
+
+inta a = 1; 
+= 00000000000000000000000000000001 (in memory)
+4 parts of memory are reserved for this int variable with value 
+-----------------------------------------------------
+| 4 | b | y | t |   |   |   |   |   |   |   |   |   |
+| e | s | * | * |   |   |   |   |   |   |   |   |   |
+-----------------------------------------------------
+ 120 121 123 124 125 126 127 128 129 130 131 132 133 
+
+- after assigning 2 variables in same block, it will be assigned right after first one 
+int a = 1; 00000000000000000000000000000001
+int b = 3; 00000000000000000000000000000010
+-----------------------------------------------------
+|1st| v | a | r |2nd| v | a | r |   |   |   |   |   |
+| i | a | b |le | i | a | b |le |   |   |   |   |   |
+-----------------------------------------------------
+ 120 121 123 124 125 126 127 128 129 130 131 132 133 
+
+- another data types can be asigned into memory with their own values 
+- examples include integers (5, 6, -24), decimals (2.3, 5.7, -2.8) characters ('a', 'w')
+
+---------------------------------------------------------------------------------
+|1st| v | a | r | * |1st|   | * | * |2nd|   | * | * |3rd|   | * |2nd| v | a | r |
+| i | a | b |le | * |arr|ay | * | * |arr|ay | * | * |arr|ay | * | i | a | b |le |
+---------------------------------------------------------------------------------
+ 120 121 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140
+int a = 1; 
+int sampleArray[3] = {5, 3, 20};
+sampleArray[0] = {5}; = 4 bytes
+sampleArray[1] = {3}; = 4 bytes
+sampleArray[2] = {20}; = 4 bytes
+int b = 3; 
+
+- after allocating 12 bytes for array in memory and assigning new variable, new values to the array
+cannot be added without dynamically moving from old memory space to new, bigger one whole arrau
+plus additional space for 2 new integers 
+// -------------------------------------------------------------------------------------------------------------------------
