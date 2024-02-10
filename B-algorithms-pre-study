@@ -86,3 +86,35 @@ int b = 3;
 cannot be added without dynamically moving from old memory space to new, bigger one whole arrau
 plus additional space for 2 new integers 
 // -------------------------------------------------------------------------------------------------------------------------
+CLASSES AND OBJECTS
+- attributes, methods, constructors 
+- classes and objects are one of most fundamental topics when it comes to data structures and algorithms
+- actual usecase is using it to represent bots with functions
+
+bot Tom{
+    function hello("Hello, I am TOM")
+}
+
+bot Jerry{
+    function hello("Hey, I am Jerry")
+}
+- storing sets of information in each of bots 
+- adding properties and functionalities to these bots 
+- also adding variables 
+bot Tom{
+    function hello("Hello, I am TOM")
+    var int weight: 30 
+    var str name: "TOM"
+}
+
+OBJECT 
+- is collection of properties, variables and functions 
+- object represents thing that it is assigned, with different functions and properties
+bot Tom{
+    function hello("Hello, I am TOM")
+    var int weight: 30 
+    var str name: "TOM"
+}
+- once object is created, we can put him inside variable that represents that object
+- so we can use it or call it inside another function 
+
