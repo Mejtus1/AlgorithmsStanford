@@ -335,3 +335,79 @@ log 10 = 3.2 (this should be taken as seal value)
 - which will correspont with our runtime which is 4 
 
 // --------------------------------------------------------------------------------------------------------
+Time Complexity of While and IF 
+
+- Pascal language Syntax
+for i = 1 to n do step 2    (1, 3, 5, 7, ...)
+{
+    stmt;
+}
+while(condition)         do                      repeat
+{                        {                       {
+    stmt;                   stmt;                   stmt; 
+}                        } while (condition)     } until(condition);
+
+- do while will execute as long as the condition is true 
+- repeat until will execute until the condition is false 
+
+// --------
+- piece of code using while loop 
+i = 0;    -------- 1 
+while(i<n) ------- n+1
+{
+    stmt; -------- n 
+    i++;  -------- n 
+}
+f(n) = 3n+2 
+O(n)
+
+- same code in C language
+for(i=0; i<n; i++) ----- 1 + n+1 + n
+{
+    stmt; -------------- n
+}
+f(n)=3n+2
+f(n)=2n+1
+O(n)
+
+// ---------------------
+a = 1; 
+while(a < b)
+{
+    stmt; 
+    a = a * 2; 
+}
+
+a/1 
+1 * 2 = 2
+2 * 2 = 2to2power
+2to2power * 2 = 2to3power
+= 2 to k power 
+- we dont know how many times is this going to happen
+
+Terminate
+a >= b 
+a = 2tokpower
+2tokpower >= b 
+2tokpower = b 
+k = log b 
+O(log n)
+
+- same code using for loop is: 
+for(a=1; a<b; a=a*2)
+{
+    stmt; 
+}
+
+// ---------------
+i = n;
+while(i>1)
+{
+    stmt;
+    i=i/2;
+}
+- is same as: 
+for(i=n;i>1;i=i/2)
+{
+    stmt; 
+}
