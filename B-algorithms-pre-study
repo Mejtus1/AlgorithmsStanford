@@ -85,6 +85,7 @@ int b = 3;
 - after allocating 12 bytes for array in memory and assigning new variable, new values to the array
 cannot be added without dynamically moving from old memory space to new, bigger one whole arrau
 plus additional space for 2 new integers 
+
 // -------------------------------------------------------------------------------------------------------------------------
 CLASSES AND OBJECTS
 - attributes, methods, constructors 
@@ -118,3 +119,96 @@ bot Tom{
 - once object is created, we can put him inside variable that represents that object
 - so we can use it or call it inside another function 
 
+r1 = bot Tom {
+    function introduceSelf("Hello, I am TOM")
+    var int weight: 30 
+    var str name: "TOM"
+}
+
+r2 = bot Jerry {
+    function introduceSelf("Hello, my name is Jerry")
+    var int weight: 40
+    var str name: "Jerry"
+    var str color: "blue"
+}
+- we have 2 objects and they have common function and attributes 
+- is there a way to organize this ?:
+- yes = classes
+
+CLASS 
+- class is like a blueprint for our bots 
+
+class {
+    name:
+    color:
+    weight: 
+    hello()
+}
+- values are not definet yet, it doesnt refer to any specific bot in our case
+- it points just to our category of bots  
+- when we define a class we need to give it a name
+
+class Robot {
+    name:
+    color:
+    weight: 
+    hello()
+}
+
+introduceSelf(
+    "My name is " + name
+);
+- function, with build in functionality in java 
+- example of CLASS code in java: 
+
+Robot r1 = new Robot();
+r1.name = "Tom";
+r1.color = "red";
+r1.weight = 30;
+
+Robot r2 = new Robot();
+r2.name = "Jerry";
+r2.color = "blue";
+r2.weight = 40;
+
+r1.introduceSelf()
+r2.introduceSelf()
+- run this function introduceSelf() on this object r1, r2
+- prints our for r1.introduceSelf() ["Hello, my name is TOM"]
+- prints our for r2.introduceSelf() ["Hello, my name is Jerry"]
+
+HOW IS THIS CLASS DEFINED ? 
+- these are instant variables of class Robot 
+class Robot {
+    String name;
+    String color; 
+    int weight; 
+
+    void introduceSelf() {
+        System.out.printIn(
+           "My name is " + this.name);
+    }
+}
+ - when this is called it happens like 
+ 1. class introduceSelf is called
+ 2. System.out.printIn is called with output: "My name is "
+ 3.  + this.name = this refers to r1 or r2 .name
+
+ - instead of creating object everytime from scratch and write the stame data 
+ - we can use CONSTRUCTOR 
+
+Constructor 
+- function, that allows to create an object from a class
+
+Robot(String n, String c, int w) {
+ this.name = n;
+ this.color = c;
+ this.weight = w;
+}
+- when this new constructor is defined, previous bots are deleted
+- now we can define new robot using our constructor 
+Robot r1 = new Robot("Tom", "red", 30);
+Robot r2 = new Robot("Jerry", "blue", 40);
+- these arguments are going to be passed down to the construcor
+
+// -------------------------------------------------------------------------------------------------------------------------
