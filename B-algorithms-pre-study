@@ -286,4 +286,106 @@ class Person {                     |
         this.isSitting = false; }  |
 }                                  |
 -----------------------------------|
+
+// -------------------------------------------------------------------------------------------------------------------------
+LINKED LISTS 
+- data structure for storing a collection of items in different way than arrays 
+- it can be visualized as a set of boxes, linked to one another 
+head = refers to first box 
+data = data inside reffered box 
+next = next data than head 
+
+6 - 3 - 4 - 2 - 1 
+head.data = 6 
+head.next.data = 3
+head.next.next = 4
+- we can assign variable to ceratin box in linked list 
+middle = 4 
+middle.data = 4 
+middle.next.data = 2
+- there is no easy way of going to the left in liked lists
+- just stick to the fact we need to move right all the time 
+
+Examples: 
+
+1. 
+class Box { 
+    int data; 
+    Box next;
+    Box(int,givenData) {
+        this.data = givenData;
+    }
+}
+new Box(6) 
+- we created box object with number 6 = first data in list 
+- next attribute of object is set as null, because we dont have any other data in list 
+
+2. 
+class Node {
+    int data
+    Node next;
+    Node(int data) { 
+        this.data = data; 
+    }
+}
+Node nodaA = new Node(6);
+Node nodeB = new Node(3); 
+Node nodeC = new Node(4); 
+Node nodeD = new Node(2); 
+Node nodeE = new Node(1); 
+- with only this block of code, these boxes wont be connected to each other 
+nodeA.next = nodeB; 
+nodeB.next = nodeC; 
+nodeC.next = nodeD; 
+nodeD.next = nodeE; 
+- this method for creating linked list is slow
+        
+3. 
+4 - 2 - 3 - 10 - 2 - ......
+
+class Node {
+    int data
+    Node next;
+    Node(int data) { 
+        this.data = data; 
+    }
+}
+
+Node head = new Node(4);
+Node nodeB = new Node(2); 
+Node nodeC = new Node(3); 
+Node nodeD = new Node(10); 
+Node nodeE = new Node(2); 
+
+head.next = nodeB;
+nodeB.next = nodeC;
+nodeC.next = nodeD; 
+nodeD.next = nodeE; 
+
+- function takes head variable and return number of nodes in this whole linked list 
+int countNodes(Node head) {  
+    // assuming that head != null 
+    int count = 1; 
+    Node current = head; 
+    while (current.enxt != null) {
+        current = current.next; 
+        count += 1;
+        } 
+    }
+
+4. previous node 
+Class Node {
+        int data; 
+        Node next; 
+        Node prev;               - prev points to previous box 
+        Mpde(int data) {
+            this.data = data;
+        }
+}
+3 = head
+10 = middle 
+middle.prev = 3 
+
+ 3 - 10 - 2 - null 
+
 // -------------------------------------------------------------------------------------------------------------------------
