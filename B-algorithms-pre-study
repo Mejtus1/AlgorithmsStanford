@@ -389,3 +389,68 @@ middle.prev = 3
  3 - 10 - 2 - null 
 
 // -------------------------------------------------------------------------------------------------------------------------
+Big Oh notation and Time-complexity
+- how time it takes to run your function, grows as your size of the input grows
+
+exapmle: 
+given_array = [1, 4, 3, 2, ... 10]
+- we want to write function that takes elements of array returns sum of all numbers in array 
+def find_sum(given_array): 
+    total = 0
+    for each i in given_array:
+        total += i
+    return total 
+
+How much time does it take to run this funtion ? 
+- how fast is computer ? 
+- are we running other programs at the same time ? 
+- in what language is it written ? 
+important question we can answer is :
+How does runtime of this function grow ? = Big oh notation and Time complexity 
+- code above run in python 
+
+as n increases, time to complete this function increases linearly = linear time complexity
+time complexity = a way of showing how time it takes to complete a function or particular code
+increases as the size of the input increases
+
+Time complexity examples include: 
+linear time O(n)
+constant time O(1)
+quadratic time (On2squared)
+
+T = an + b = O(n)
+T = cn2squared + dn + e = O(n2squared)
+
+given_array1 = [1, 4, 3, 2, ..., 10,]
+def stupid_function(given_array1): 
+    total = 0
+    return total 
+T = c = 0.115
+0.115 x 1 = O(1) = constant time 
+
+def find_sum(given_array): 
+    total = 0                 ----- O(1)
+    for each i in given_array: 
+        total += i            ----- n * O(1)
+    return total              ----- O(1)
+= O(1) + O(1) + n * O(1) 
+= O(n)
+
+- function that takes 2dimensional square arrays, and sums all elements inside 
+array_2d = [[1, 4, 3],
+            [3, 1, 9],
+            [0, 5, 2]]
+
+array_2d2 = [[1, 4, 3, 1], 
+             [3, 1, 9, 4],
+             [0, 5, 2, 6],
+             [4, 5, 7, 8]]
+def find_sum2d2(array_2d2): 
+    total = 0                ------ O(1)
+    for each row in array_2d2
+        for each i in row: 
+            total += i       ------ n * n + O(1) 
+        return total         ------ O(1)
+O(1) + O(1) + (n * n + O(1))
+O(n2squared)
+// -------------------------------------------------------------------------------------------------------------------------
