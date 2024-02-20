@@ -454,3 +454,71 @@ def find_sum2d2(array_2d2):
 O(1) + O(1) + (n * n + O(1))
 O(n2squared)
 // -------------------------------------------------------------------------------------------------------------------------
+Trees and Binary Trees Data Structure
+- tree is similar data strucutre like Linked List data structure
+- in tree each node can be linked into multiple other notes 
+- in trees there are no two references that link to the same node 
+- tree is structure in which there are nodes connected to each other and root node is way to get to every other node 
+- root node in tree, is node to which there are no parents 
+
+class Node { 
+   int data
+   Node child1
+   Node child2
+   Node child3 
+}
+- child1 = 9
+- child2 = 10 
+- child3 = 2
+
+------1------
+|    |    | 
+9    10   2-----|----|  
+          |     |    | 
+          |     4    -1
+       |--5--|
+       |     | 
+       2     4
+
+Binary trees
+- trees are called binary trees, when they have 2 children 
+
+class Node { 
+    int data 
+    Node left
+    Node right 
+}
+        2
+      /   \
+     /     \
+    -1      5 
+    / \    / \
+   12  8   5  4 
+
+Practice using a tree 
+- we have given tree, find function to sum all elements of tree 
+
+class Node { 
+    int data 
+    Node left
+    Node right 
+}
+
+      2 
+     / \
+    3   4
+   / \
+   5  6 
+
+find_sum(root) -> 20 
+
+- we define base case = root == null, (if root value is null, return zero)
+- otherwise, if we are given root, sum value, root + right subtree + left subtree
+def find_sum(root): 
+      if root == null: 
+            return 0
+      return root.data + find_sum(root.left) + find_sum(root.right)
+- each time these functions are called, we end up with O(1) = constant time 
+time complexity is O(n)
+
+// -------------------------------------------------------------------------------------------------------------------------
