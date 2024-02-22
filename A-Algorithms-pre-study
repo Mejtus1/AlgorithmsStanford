@@ -553,3 +553,63 @@ m    n       m    n
              2    2
 
 // --------------------------------------------------------------------------------------------------------
+1.7 Types of functions 
+O(1) = constant 
+
+f(n) = 2  
+f(n) = 5 
+f(n) = 5000
+f(n) = 1250 
+f(n) = 1000000 
+--------------
+O(1)
+- not dependent on the size of input, it is written as constant 
+
+----------------------
+O(log n) = Logarithmic 
+
+f(n) = 2n+3
+f(n) = 500n+700
+f(n) = 2/5000 + 6 
+- all of these are polynomials, and we write n
+----------------------
+O(n) = Linear 
+
+----------------------
+O(n2squared) = Quadratic 
+
+----------------------
+O(n3power) = Cubic
+
+----------------------
+O(2npower) = Exponential
+
+
+------------------------------|
+O(1) = constant               |
+O(log n) = Logarithmic        |
+O(n) = Linear                 |
+O(n2squared) = Quadratic      |
+O(n3power) = Cubic            |
+O(2npower) = Exponential      |
+------------------------------|
+
+// --------------------------------------------------------------------------------------------------------
+1.7.1 Compare Class of Functions 
+1 < log n < square root of n < n < n log n < n2power < n3power < ntonpower
+
+example: 
+
+        log n       n       n2power         ntonpower 
+          0         1          1                2
+          1         2          4                4
+          2         4         16               16
+          3         8         64               256
+          3.1....   9         81               512
+
+n to power of 100 < 2 power of n 
+- because n can be any number from 0 to infinity
+
+COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1
+
+// --------------------------------------------------------------------------------------------------------
