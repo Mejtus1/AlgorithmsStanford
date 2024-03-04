@@ -613,3 +613,108 @@ n to power of 100 < 2 power of n
 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1 COMMIT 1
 
 // --------------------------------------------------------------------------------------------------------
+1.8.1 Asymptotic Notations, Big Oh 
+- mathematical background
+- class of a function, we already know comparisons of functions 
+- we need simple method for representing time complexity: 
+Big-oh notation = UPPERBOUND of function 
+big-omega       = LOWER BOUND of a function 
+theta           = AVERAGE BOUND of a function 
+- every function we represent is either: upperbound, lowerbound or averagebound 
+- when we find time complexity of any function it will be one of these: 
+1 < log n < square root of n < n < n log n < n2power < n3power < ntonpower
+- if it is not one of these, than it will be multiple of them, otherwise we would not be able to graph them 
+
+Example Big-Oh notation: 
+The function f(n) = O(g(n)) if and only exist positive constants c and no
+    such that f(n) <= c * g(n) for all n >= no
+    
+    sub-example: 
+    f(n) = 2n+3                                    [10 = c, n = g(n)]
+    2n+3 <= 10n n >= 1                      2n+3 <= 10n, n >= 1
+    f(n) = O(n)                             [f(n)]       [for all n >= no]      
+- g of n is n, there fore we can say f(n) = O(n)
+
+    sub-example: 
+    f(n) = 2n+3
+    2n+3 <= 2n + 3n 
+    2n+3 <= 5n   n >=1
+    f(n) = O(n)
+- if we put 1 there, it will be true
+- if we put any other value in n, it will be greater
+
+    sub-example: 
+    f(n) = 2n+3
+    2n+3 <= 2n2squared + 3n2squared
+    2n+3 <= 5n2squared   n >=1
+    f(n) = O(n2squared)
+- the same function can also be O(n2squared)
+
+- this f(n) = 2n + 3 belongs to this class, that means all functions
+after n (n log n < n2power < n3power < ntonpower) BECOME UPPER BOUND 
+- all the functions (1 < log n < square root of n) BECOME LOWER BOUND 
+- n becomes AVERAGE BOUND 
+                               |
+1 < log n < square root of n < n < n log n < n2power < n3power < ntonpower
+
+OMEGA NOTATION:
+The function f(n) = OMEGA (g(n)) if and only exist positive constants c and no
+  such that f(n) >= c * g(n) for all n >= no
+
+  sub-example: 
+  f(n) = 2n+3 
+  2n+3>= 1*n     n>=1
+  f(n)   c g(n)
+  f(n) = OMEGA(n)
+
+  sub-example: 
+  f(n) = 2n+3 
+  2n+3>= 1*log n     n>=1
+  f(n)   c  g(n)
+  f(n) = OMEGA(log n)
+
+- useful one for OMEGA case is one which is closest = OMEGA(n)
+
+THETA NOTATION: 
+The function f(n) = OMEGA (g(n)) if and only exist positive constants c1, c2 and no
+  such that c1 * g(n) <= f(n) <= c2*g(n) for all n >= no
+  
+  sub-example: 
+  f(n) = 2n + 3 
+  1 * n <= 2n+3 <= 5 * n 
+  c1, g(n)  f(n)   c2, g(n)
+  f(n) = THETA(n) 
+- we cannot write inside THETA, any other thing except n, O(n)
+
+
+1.8.2. Asymptotic Notations - Big Oh - Theta - Omega - PART 2
+
+f(n) = 2n2power + 3n + 4
+2n2power + 3n + 4 <= 2n2power + 5n2power + 4n2power
+2n2power + 3n + 4 <= 9n2power     n>=1
+f(n) = O(n2power)
+
+
+f(n) = n2npower + 3n + 4 
+2n2power + 3n + 4 >= 1 * n2power               OMEGA(n2power)
+1 * n2power <= 2n2power + 3n + 4 <= 9n2power       O(n2power)
+
+
+f(n) = n2power log n + n 
+1 * n2power log n <= n2power log n <= 10 n2power log n 
+O(n2power log n), OMEGA (n2power log n)
+THETA (n2power log n)
+
+
+f(n) = n! = n * (n-1) * (n-2) * ... * 3 * 2 * 1 
+1 * 1 * * 1 * ... * 1 <= 1 * 2 * 3 ... * n < = n * n * n * n 
+1 <= n! <= ntopowern
+OMEGA(1), O(ntonpower)
+
+
+f(n) = log n! 
+log(1 * 1 * .... 1) <= log(1 * 2 * 3 ... * n) <= log(n * n * ... * n)
+1 <= log n! <= log n2power 
+OMEGA(1), O*|(n log n)
+
+// --------------------------------------------------------------------------------------------------------
