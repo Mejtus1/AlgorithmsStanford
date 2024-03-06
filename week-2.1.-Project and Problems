@@ -110,3 +110,172 @@ thus: 1/2(f(n) + g(n)) <= max{f(n),g(n)} <= f(n) + g(n)
 for all n >= 1 
 
 => max{f,g} = O(f(n) + g(n)) [where n0 = 1, c1 = 1/2, c2 = 1]
+
+Exercise 5:
+Arrange following functions in increasing order of growth rate with g(n) following f(n)
+only if f(n) = O(g(n))
+a) 2(topowerof2(topowerofn))
+b) 2(topowerofn(topowerof2))
+c) n(to power of 2) log n 
+d) n
+e) n(to power of 2(to power of n))
+
+d) n <- c) n(to power of 2) log n <- b) 2(topowerofn(topowerof2)) <- a) 2(topowerof2(topowerofn)) <- e) n(to power of 2(to power of n))
+
+Exercise 6: 
+3-way-Merge Sort: 
+Suppose that instead of dividing in half at each step of Merge Sort, you divide into thirds, 
+sort each third, and finally combine all of them using a three-way merge subroutine. 
+What is the overall asymptotic running time of this algorithm? 
+
+- in three-way merge sort algorithm where array is divided into thirds at each step, overall asymptotic running time can be analyzed as follows:
+
+Divide: 
+- dividing array into thirds at each step requires 
+
+Conquer: 
+- sorting each third of array independently requires time
+- each third has size of and time complexity of sorting each third is same as that of standard merge sort
+
+Merge: 
+- combining all thirds using three-way merge subroutine has linear time complexity O(n), 
+as it involves comparing and merging elements from all thirds
+
+T(n) = 3 * T(n/3) + O(n) 
+Master Theorem = O(n log n)
+
+Python Code for three way merge sort algorithm 
+-------------------------------------------------------------|
+def merge(arr, left, middle1, middle2, right):               |
+    n1 = middle1 - left + 1                                  |
+    n2 = middle2 - middle1                                   |
+    n3 = right - middle2                                     |
+                                                             |
+    # Create temporary arrays to store the subarrays         |
+    L = arr[left:middle1+1]                                  |
+    M = arr[middle1+1:middle2+1]                             |
+    R = arr[middle2+1:right+1]                               |
+                                                             |
+    # Initialize indices for merging                         |
+    i = j = k = 0                                            |
+    m = len(L)                                               |
+    n = len(M)                                               |
+    o = len(R)                                               |
+                                                             |
+    # Merge the three subarrays                              |
+    while i < m and j < n and k < o:                         |
+        if L[i] <= M[j] and L[i] <= R[k]:                    |
+            arr[left] = L[i]                                 |
+            i += 1                                           |
+        elif M[j] <= L[i] and M[j] <= R[k]:                  |
+            arr[left] = M[j]                                 |
+            j += 1                                           |
+        else:                                                |
+            arr[left] = R[k]                                 |
+            k += 1                                           |
+        left += 1                                            |
+                                                             |
+    # Copy the remaining elements of L[], M[], and R[],if any|
+    while i < m:                                             |
+        arr[left] = L[i]                                     |
+        i += 1                                               |
+        left += 1                                            |
+    while j < n:                                             |
+        arr[left] = M[j]                                     |
+        j += 1                                               |
+        left += 1                                            |
+    while k < o:                                             |
+        arr[left] = R[k]                                     |
+        k += 1                                               |
+        left += 1                                            |
+                                                             |
+def three_way_merge_sort(arr, left, right):                  |
+    if left < right:                                         |
+        # Calculate midpoints                                |
+        middle1 = left + (right - left) // 3                 |
+        middle2 = left + 2 * (right - left) // 3             |
+                                                             |
+        # Sort the three thirds recursively                  |
+        three_way_merge_sort(arr, left, middle1)             |
+        three_way_merge_sort(arr, middle1 + 1, middle2)      |
+        three_way_merge_sort(arr, middle2 + 1, right)        |
+                                                             |
+        # Merge the sorted thirds                            |
+        merge(arr, left, middle1, middle2, right)            |
+                                                             |
+# Example usage:                                             |
+arr = [12, 11, 13, 5, 6, 7, 3, 2, 1]                         |
+print("Original array:", arr)                                |
+three_way_merge_sort(arr, 0, len(arr) - 1)                   |
+print("Sorted array:", arr)                                  |
+-------------------------------------------------------------|
+
+- recurrence relation for time complexity of three-way merge sort algorithm can be expressed as:
+T(n) = 3 * T(n/3) + O(n)
+
+Where: 
+T(n) is time complexity of sorting array of size n
+O(n) represents time complexity of merging three sorted thirds
+
+Applied master theorem for divide and conquer recurrences: 
+where: 
+- a is number of subproblems
+- b is factor by which problem size is reduced
+- f(n) is time complexity of work done outside recursive calls
+
+in case of three-way merge sort: 
+- a = 3 subproblems for merging 
+- b = 3 array dividend into thirds
+- f(n) = O(n) time complexity of merging 
+
+// ---------------------------------------------------------------------------
+
+Exercise 7: 
+In this programming assignment you will implement one or more of the integer multiplication algorithms described in lecture.
+
+To get the most out of this assignment, your program should restrict itself to multiplying only pairs of single-digit numbers.  You can implement the grade-school algorithm if you want, but to get the most out of the assignment you'll want to implement recursive integer multiplication and/or Karatsuba's algorithm.
+
+So: what's the product of the following two 64-digit numbers?
+
+3141592653589793238462643383279502884197169399375105820974944592
+
+2718281828459045235360287471352662497757247093699959574966967627
+
+To find the product of the given 64-digit numbers, we can use Karatsuba's algorithm, an efficient algorithm for multiplying large numbers. 
+Split each number into two halves of equal length.
+Recursively compute the products of these halves.
+Compute the cross products of the halves and add them appropriately.
+Combine the results to obtain the final product.
+
+PYTHON CODE 
+---------------------------------------------------------------------------
+def karatsuba_multiplication(x, y):
+    if x < 10 or y < 10:
+        return x * y
+    
+    # Calculate the number of digits in each number
+    n = max(len(str(x)), len(str(y)))
+    n2 = n // 2
+    
+    # Split the numbers into halves
+    a, b = divmod(x, 10**n2)
+    c, d = divmod(y, 10**n2)
+    
+    # Recursively compute the products of the halves
+    ac = karatsuba_multiplication(a, c)
+    bd = karatsuba_multiplication(b, d)
+    ad_bc = karatsuba_multiplication((a + b), (c + d)) - ac - bd
+    
+    # Combine the results to obtain the final product
+    return (10**(2*n2)) * ac + (10**n2) * ad_bc + bd
+
+# Define the 64-digit numbers
+num1 = 3141592653589793238462643383279502884197169399375105820974944592
+num2 = 2718281828459045235360287471352662497757247093699959574966967627
+
+# Calculate the product using Karatsuba's algorithm
+product = karatsuba_multiplication(num1, num2)
+print("Product of the two 64-digit numbers:", product)
+---------------------------------------------------------------------------
+Combined number: 
+8539734222673567065463550869546574495034888535765114961879601127067743044893204848617875072216249073013374895871952806582723184
