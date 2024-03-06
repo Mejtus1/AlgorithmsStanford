@@ -1,0 +1,461 @@
+// ---------------------------------------------------------------------------
+ALGORITHM TYPES 
+- commonly used in computer science 
+
+1. Sorting Algorithms 
+Bubble Sort, Quick Sort, Merge Sort, Insertion Sort, ... 
+
+2. Searching Algorithms
+Binary Search, Linear Search, Depth First Search, Breadth First Search ... 
+
+3. Graph Algorithms 
+Dijkstra's Algorithm, Bellman-Ford Algorithm, Prim's Algorithm, Kruskal's Algorithm ... 
+
+4. String Algorithms
+KMP Algorithm, Rabin-Karp Algorithm, Boyer-Moore Algorithm, ...
+
+5. Dynamic Programming Algorithms 
+Longest Common Subsequence, Knapsack Problem, Traveling Salesman Problem, ...
+
+
+
+
+
+// ---------------------------------------------------------------------------
+1. Simple Array Algorithm, iterating and printing elements, Big O 
+2. Simple calculation Algorithm, Big O 
+3. Maximum Algorithm in Array, Big O 
+4. Nested loops Algorithm, comparing pair of elements, Big O 
+5. Binary search on sorted array to find specific element, Big O 
+6. Merge sort Algorithm 
+7. Simple Array sum of elements, Big O 
+
+
+
+// ---------------------------------------------------------------------------
+1. 
+
+- algorithm that iterates through an array of size n and prints each element
+
+Python code 
+------------------------|
+def print_array(arr):   |
+    for element in arr: |
+        print(element)  |
+------------------------| 
+
+- to calculate time complexity using Big O notation, we count number of 
+basic operations performed by algorithm in terms of input size n 
+- in this case, basic operation is printing element
+
+Input Size: n (number of elements in array)
+Basic Operation: Printing element
+Time Complexity Analysis: algorithm iterates through entire array once, performing basic operation (printing) for each element
+                          as the array size n increases, number of iterations (and printing operations) also increases linearly with n
+Big O Notation: since number of basic operations grows linearly with input size n, 
+we express time complexity as O(n)
+
+So, time complexity of print_array algorithm is O(n), indicating that its runtime grows linearly with size of input array. 
+This means that if array doubles in size, runtime of algorithm will also roughly double.
+
+// ---------------------------------------------------------------------------
+
+
+
+// ---------------------------------------------------------------------------
+2. 
+- algorithm that calculates sum of first n natural numbers
+
+Python code 
+--------------------------------|
+def sum_of_natural_numbers(n):  | 
+    total = 0                   |
+    for i in range(1, n + 1):   |
+        total += i              | 
+    return total                |
+--------------------------------| 
+
+- to calculate time complexity using Big O notation, we again count number of basic operations performed by algorithm in terms of input size n
+
+Input Size: n (number of natural numbers to sum)
+Basic Operation: addition operation inside loop
+Time Complexity Analysis: algorithm iterates through loop n times, performing basic addition operation each time
+                          as input size n increases, number of iterations (and addition operations) also increases linearly with n
+Big O Notation: since number of basic operations grows linearly with input size n, we express time complexity as O(n)
+
+Time complexity of sum_of_natural_numbers algorithm is O(n), indicating that its runtime grows linearly with input size n. 
+This means that if value of n doubles, runtime of algorithm will also roughly double.
+
+// ---------------------------------------------------------------------------
+
+
+
+// ---------------------------------------------------------------------------
+3. 
+
+- algorithm that finds maximum element in array
+
+PYTHON CODE
+def find_max(arr):
+    max_element = arr[0]  # Initialize max_element with first element of array
+    for element in arr:
+        if element > max_element:
+            max_element = element
+    return max_element
+
+- to analyze time complexity using Big O notation, we'll again count number of basic operations performed by algorithm relative to input size n
+    
+Input Size: n (number of elements in array)
+Basic Operations: comparison (if element > max_element) and assignment (max_element = element)
+Time Complexity Analysis: algorithm iterates through entire array once, comparing each element to current maximum and updating maximum if necessary
+                          as array size n increases, number of iterations remains directly proportional to n
+Big O Notation: since number of basic operations grows linearly with input size n, we express time complexity as O(n)
+    
+Time complexity of find_max algorithm is O(n), indicating that its runtime grows linearly with input size 
+As size of array doubles, number of comparisons and assignments also approximately doubles, leading to proportional increase in runtime.
+
+// ---------------------------------------------------------------------------
+
+
+
+// ---------------------------------------------------------------------------
+4. 
+
+- algorithm that compares each pair of elements in array and counts number of pairs where first element is greater than second element
+
+PYTHON CODE 
+---------------------------------------------------| 
+def count_pairs(arr):                              |
+    count = 0                                      |
+    n = len(arr)                                   |
+    for i in range(n):               # Outer loop  |
+        for j in range(i + 1, n):    # Inner loop  |
+            if arr[i] > arr[j]:                    |
+                count += 1                         |
+    return count                                   |
+---------------------------------------------------| 
+
+Input Size: n (number of elements in array)
+Basic Operations: comparison (if arr[i] > arr[j]) and addition (count += 1) inside inner loop
+Time Complexity Analysis: 
+- outer loop iterates through entire array, and for each element arr[i], inner loop compares it with subsequent elements arr[j]
+- inner loop has varying number of iterations: n-1 iterations in first iteration 
+of outer loop, n-2 iterations in second iteration, and so on
+- total number of iterations for inner loop can be approximated as sum of first 
+n-1 integers, which is O(n(to power of 2)
+- Since basic operations inside inner loop are constant time, overall time complexity of algorithm is O(n(to power of 2))
+
+// ---------------------------------------------------------------------------
+
+
+
+// ---------------------------------------------------------------------------
+5. 
+
+- algorithm that performs binary search on sorted array to find specific element
+
+PYTHON CODE 
+----------------------------------|
+def binary_search(arr, target):   |
+    low = 0                       |
+    high = len(arr) - 1           | 
+    while low <= high:            |
+        mid = (low + high) // 2   | 
+        if arr[mid] == target:    | 
+            return mid            |
+        elif arr[mid] < target:   | 
+            low = mid + 1         |
+        else:                     |
+            high = mid - 1        | 
+    return -1                     |
+----------------------------------|
+
+input Size: n (the number of elements in the array).
+Basic Operations: Comparisons (if arr[mid] == target, if arr[mid] < target, else) and updates to low and high.
+Time Complexity Analysis: each iteration of while loop, algorithm dividessearch space in half by adjusting low and high
+- number of iterations needed to find target value depends on size of array and is approximately proportional to logarithm of n (base 2)
+
+Therefore, time complexity of binary search is O(logn)
+Time complexity is O(logn), indicating that its runtime grows logarithmically with input size n
+
+// ---------------------------------------------------------------------------
+
+
+
+// ---------------------------------------------------------------------------
+6. 
+
+- algorithm that involves nested loops and has time complexity of O(n log n) 
+- consider problem of sorting array using merge sort
+
+PYTHON CODE 
+-------------------------------------------| 
+def merge_sort(arr):                       |
+    if len(arr) <= 1:                      |
+        return arr                         |
+    mid = len(arr) // 2                    |
+    left_half = merge_sort(arr[:mid])      | 
+    right_half = merge_sort(arr[mid:])     | 
+    return merge(left_half, right_half)    | 
+                                           | 
+def merge(left, right):                    | 
+    result = []                            | 
+    i = j = 0                              |
+    while i < len(left) and j < len(right):|
+        if left[i] < right[j]:             |
+            result.append(left[i])         | 
+            i += 1                         |
+        else:                              |
+            result.append(right[j])        |
+            j += 1                         |
+    result.extend(left[i:])                |
+    result.extend(right[j:])               |
+    return result                          | 
+-------------------------------------------|
+
+Divide and Conquer: 
+- merge sort divides array into halves recursively until base case is reached (arrays of size 1 or 0)
+Merging: 
+- merging step combines sorted halves to form sorted array
+- time complexity of merge sort can be expressed as O(nlogn), where n is number of elements in array
+- divide step divides array into halves, which takes O(logn) time
+- merge step merges sorted halves, which takes O(n) time
+- since merge step is performed O(logn) times (due to recursive nature of merge sort), overall time complexity is O(nlogn)
+
+Time complexity of merge_sort algorithm is O(nlogn), indicating that its runtime grows logarithmically with input size n
+// ---------------------------------------------------------------------------
+
+
+
+// ---------------------------------------------------------------------------
+7. 
+
+- merge sort arrays 
+
+PYTHON CODE 
+--------------------------------------------| 
+def merge_sort(arr):                        | 
+    if len(arr) <= 1:                       | 
+        return arr                          | 
+    mid = len(arr) // 2                     | 
+    left_half = merge_sort(arr[:mid])       | 
+    right_half = merge_sort(arr[mid:])      | 
+    return merge(left_half, right_half)     | 
+                                            | 
+def merge(left, right):                     | 
+    result = []                             | 
+    i = j = 0                               | 
+    while i < len(left) and j < len(right): | 
+        if left[i] < right[j]:              |
+            result.append(left[i])          | 
+            i += 1                          | 
+        else:                               | 
+            result.append(right[j])         | 
+            j += 1                          | 
+    result.extend(left[i:])                 | 
+    result.extend(right[j:])                | 
+    return result                           | 
+--------------------------------------------| 
+
+Divide and Conquer: 
+- merge sort divides array into halves recursively until base case is reached (arrays of size 1 or 0)
+Merging: 
+- merging step combines sorted halves to form sorted array
+- time complexity of merge sort can be expressed as O(nlogn), where n is number of elements in array. 
+This is because:
+- divide step divides array into halves, which takes O(logn) time
+- merge step merges the sorted halves, which takes O(n) time
+- since merge step is performed O(logn) times (due to recursive nature of merge sort), overall time complexity is O(n log n)
+
+Time complexity of merge_sort algorithm is O(nlogn), 
+indicating that its runtime grows logarithmically with input size n 
+
+// ---------------------------------------------------------------------------
+
+
+
+
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+
+1. Sorting Algorithms 
+Bubble Sort, Quick Sort, Merge Sort, Insertion Sort, ... 
+
+// ---------------------------------------------------------------------------
+BUBBLE SORT 
+- simple sorting algorithm that repeatedly steps through list, compares adjacent elements, and swaps them if they are in wrong order
+- pass through list is repeated until list is sorted
+
+PYTHON CODE
+----------------------------------------------------|  
+def bubble_sort(arr):                               | 
+    n = len(arr)                                    | 
+    for i in range(n):                              | 
+        # Last i elements are already in place      | 
+        for j in range(0, n-i-1):                   | 
+            # Swap if the element found is greater  | 
+            # than the next element                 | 
+            if arr[j] > arr[j+1]:                   | 
+                arr[j], arr[j+1] = arr[j+1], arr[j] | 
+    return arr                                      |
+----------------------------------------------------|
+
+Input Size: 
+- n (number of elements in array)
+Basic Operations: 
+- comparisons (if arr[j] > arr[j+1]) and swaps inside nested loops
+Time Complexity Analysis:
+- in worst-case scenario, bubble sort performs n-2 comparisons in second pass, and so on until last pass, where only one comparison is needed
+- each pass requires O(n) comparisons and swaps
+- since there are n passes, total number of operations is O(n**2)
+Big O Notation: 
+- time complexity of bubble sort is O(n**2)
+
+Time complexity of bubble_sort algorithm is O(n**2), indicating that its runtime grows quadratically with input size n. 
+As size of array increases, number of comparisons and swaps increases quadratically, resulting in significant increase in runtime for large datasets. 
+
+
+
+
+// ---------------------------------------------------------------------------
+QUICK SORT 
+
+- Quick Sort is divide-and-conquer algorithm
+- works by selecting 'pivot' element from array and partitioning other elements into two sub-arrays according to whether they are less than or greater than pivot
+- sub-arrays are then recursively sorted 
+- this process continues until entire array is sorted
+
+PYTHON CODE 
+----------------------------------------------------------| 
+def quick_sort(arr):                                      | 
+    if len(arr) <= 1:                                     | 
+        return arr                                        | 
+    pivot = arr[len(arr) // 2]                            | 
+    left = [x for x in arr if x < pivot]                  |
+    middle = [x for x in arr if x == pivot]               | 
+    right = [x for x in arr if x > pivot]                 | 
+    return quick_sort(left) + middle + quick_sort(right)  | 
+----------------------------------------------------------| 
+
+Time Complexity of QUICK SORT 
+
+Best Case:
+- in best-case scenario, pivot divides array into two nearly equal parts
+- each recursive call halves size of array
+- therefore, best-case time complexity is O(nlogn)
+
+Worst Case:
+- in worst-case scenario, pivot is either smallest or largest element, resulting in unbalanced partitions
+- in this case, each recursive call reduces size of array by only one element
+Therefore, the worst-case time complexity is 
+
+Average Case:
+- on average, Quick Sort performs better than O(n log n)
+- average-case time complexity is O(n log n)
+
+
+
+
+// ---------------------------------------------------------------------------
+INSERTION SORT 
+
+- Insertion Sort is a simple sorting algorithm that builds the final sorted array one element at a time by repeatedly picking the next element and inserting it into the correct position in the sorted part of the array.
+
+PYTHON CODE 
+-----------------------------------------|
+def insertion_sort(arr):                 | 
+    for i in range(1, len(arr)):         | 
+        key = arr[i]                     | 
+        j = i - 1                        |
+        while j >= 0 and arr[j] > key:   | 
+            arr[j + 1] = arr[j]          | 
+            j -= 1                       | 
+        arr[j + 1] = key                 | 
+    return arr                           | 
+-----------------------------------------| 
+
+Time Complexity of INSERTION SORT 
+
+Best Case:
+- best-case scenario occurs when input array is already sorted
+- in this case, inner loop is executed O(n) times, but no element needs to be moved
+Therefore, best-case time complexity is O(n)
+
+Worst Case:
+- worst-case scenario occurs when input array is in reverse order
+- in this case, each element must be moved to beginning of array
+- number of comparisons and swaps in inner loop increases linearly with size of array
+Therefore, worst-case time complexity is O(n**2)
+
+Average Case:
+- in average case, Insertion Sort performs better than O(n**2)
+- average-case time complexity is also O(n**2)
+
+
+
+
+// ---------------------------------------------------------------------------
+MERGE SORT 
+
+- divide-and-conquer algorithm 
+- divides input array into two halves, recursively sorts each half, and then merges sorted halves to produce single sorted array
+
+PYTHON CODE                                  
+--------------------------------------------------| 
+def merge_sort(arr):                              |
+    if len(arr) <= 1:                             |
+        return arr                                |
+                                                  |
+    # Divide the array into two halves            | 
+    mid = len(arr) // 2                           |
+    left_half = arr[:mid]                         |
+    right_half = arr[mid:]                        | 
+                                                  |
+    # Recursively sort each half                  |
+    left_half = merge_sort(left_half)             |
+    right_half = merge_sort(right_half)           | 
+                                                  |
+    # Merge the sorted halves                     |
+    return merge(left_half, right_half)           | 
+                                                  |
+def merge(left, right):                           |
+    result = []                                   |
+    i = j = 0                                     | 
+                                                  |
+    # Merge the two sorted arrays                 | 
+    while i < len(left) and j < len(right):       | 
+        if left[i] < right[j]:                    | 
+            result.append(left[i])                | 
+            i += 1                                | 
+        else:                                     | 
+            result.append(right[j])               | 
+            j += 1                                | 
+                                                  | 
+    # Add any remaining elements                  |
+    result.extend(left[i:])                       | 
+    result.extend(right[j:])                      | 
+                                                  | 
+    return result                                 | 
+--------------------------------------------------| 
+
+Time complexity for MERGE SORT 
+
+Base Case Big O:
+- when size of input array is 1 or less, algorithm doesn't need to perform any comparisons or 
+operations as array is already sorted
+- Therefore, time complexity of base case is constant, O(1)
+
+Worst Case Big O:
+- worst-case time complexity of Merge Sort occurs when input array is in reverse order or has descending order
+- in this scenario, algorithm will perform maximum number of comparisons and merge operations at each level of recursion 
+- time complexity of worst-case scenario is O(nlogn), where n is number of elements in input array
+
+Average Case Big O:
+- average-case time complexity of Merge Sort is also O(nlogn)
+- this is because Merge Sort consistently divides input array into halves, and merge operation takes linear time proportional to size of merged subarrays
+- therefore, average-case performance is same as the worst-case performance
+
+- Merge Sort has base case time complexity of O(1), worst-case time complexity of O(nlogn), and average-case time complexity of O(nlogn)
+- its efficient performance and stable sorting make it popular choice for sorting large datasets
