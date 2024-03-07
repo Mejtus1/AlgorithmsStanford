@@ -785,3 +785,68 @@ then f(n) * d(n) = O(g(n)*e(n))
        n      n2power
 
 // --------------------------------------------------------------------------------------------------------
+1.10.1 Comparison of functions 
+n     nto2power          nto3power
+2     2to2pwoer = 4      2to3power = 8 
+3     3to2power = 9      3to3power = 27
+4     4to2power = 16     4to3power = 64
+
+nto2power         nto3power 
+   Apply Log on Both sides 
+log nto2power     log nto3power
+log nto2power  <  log nto3power
+
+-------------------------------------|
+log ab = log a + log b               |
+log a/b = log a - log b              |
+log atopowerb = b log a              |
+a topower(log b) = b topower(log a)  |
+a topower b = n then b = log n       |
+                            |        |
+                            a        |
+-------------------------------------|
+
+f(n) = ntopower2 log n > g(n) = n(log n) to power of 10 
+                      APPLY LOG 
+log[n topower2 log n]           log[n(log n)to power of 10]
+log n topower 2 + loglog n      log n + log (log n)
+2logn + loglogn                 logn+ 10loglogn 
+
+f(n) = 3n(n to power of (square root of n))            g(n) = 2 to power of (square root of n log n)
+3 n to power (of square root of n)                     2 to power of (log n to power of (square root of n))
+3 n to power (of square root of n)                     n to square root of n     
+3 n to power (of square root of n)
+2 n to power of 2
+
+---------------------------------
+1.10.2 Comparison of Functions #2 
+f(n) = n to power of log n < g(n) = n to square root of n 
+                      APPLY LOG 
+log n to power of log n        log 2 to square root of n 
+log n * log n                  square root of n log to power of 2 
+log (to power of 2) n          square root of n = n to power of 1/2 
+2 loglog n                     1/2 log n 
+
+
+f(n) = 2 to power of log n     g(n) = n to power of square root of n 
+log n * log to power of 2      square root of n, log n 
+log n                          square root of n, log n 
+
+
+f(n) = 2 to power of n         g(n) = 2 to power of 2n 
+log 2 to power of n            log 2 to power of 2n 
+n log 2                        2n log 2 
+
+g 1 (n) = {n to power 3        n < 100  }
+          {n to power 2        n >= 100 }
+g 2 (n) = {n to power 2        n < 10000  }
+          {n to power 3        n >= 10000 }
+
+Exercise True / False 
+1. (n+k) to power m = THETA(n to power m)          (n+3) to power of 2 = THETA(n to power 2)
+2. 2 to power of n+1 = O(2 to power n)              2*2 to power of n 
+3. 2 to power of 2n = O(2 to power of n)            4 to pwoer of n > 2 to power of n              
+4. Square root(log n) = O(loglog n)
+5. n to power of log n = O(2 to power of n)         log n * log n n 
+
+// --------------------------------------------------------------------------------------------------------
