@@ -718,3 +718,70 @@ log(1 * 1 * .... 1) <= log(1 * 2 * 3 ... * n) <= log(n * n * ... * n)
 OMEGA(1), O*|(n log n)
 
 // --------------------------------------------------------------------------------------------------------
+1.9 Properties of Asymptotic notations
+
+General Properties
+if f(n) is O(g(n)) then a * f(n) is O(g(n))
+    sub example: 
+    f(n) = 2n2power + 5 is O(n2power)
+    then 7*f(n) = 7(2n2power + 5)
+      = 14n2power + 35 is O(n2power)
+
+Reflexive
+if f(n) is given then f(n) = O(f(n))
+    sub example: 
+    f(n) = n2power   
+    O(n2power)
+
+Transitive 
+if f(n) is O(g(n)) and g(n) is O(h(n))
+then f(n) = O(h(n))
+    sub example: 
+    f(n) = n, g(n) = nto2power, h(n) = nto3power
+    n is O(nto2power) and nto2power is O(n3power)
+    then n is O(n3power)
+
+Symmetric 
+if f(n) is THETA(g(n)) then g(n) is THETA(f(n))
+    sub example: 
+    f(n) = n2power, g(n) = n2power
+    f(n) = THETA(n2power)
+    g(n) = THETA(n2power)
+
+Transpose Symmetric
+if f(n) = O(g(n)) then g(n) is OMEGA(f(n))
+    sub example; 
+    f(n) = n, g(n) = n2power
+    then 
+    n is O(n2power) 
+    and 
+    n2power is OMEGA(n)
+
+
+
+if f(n) = O(g(n))
+and f(n) = OMEGA(g(n))
+g(n) <= f(n) <= g(n)
+    f(n) = THETA(g(n))
+
+
+if f(n) = O(g(n))
+and d(n) = O(e(n))
+then f(n) + d(n) = 
+    sub example: 
+    f(n) = n = O(n)
+    d(n) = nto2power = O(nto2power)
+    f(n) + d(n) = n + n2power = O(nto2power)
+
+then f(n) + d(n) = O(max(g(n)))
+    sub example: 
+    f(n) = nto2power = O(n)
+    d(n) = nto2power = O(nto2power)
+    f(n) + d(n) = n2power + n = O(nto2power)
+
+if f(n) = O(g(n))
+and d(n) = O(e(n))
+then f(n) * d(n) = O(g(n)*e(n))
+       n      n2power
+
+// --------------------------------------------------------------------------------------------------------
