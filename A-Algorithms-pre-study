@@ -1258,4 +1258,77 @@ O(2 to power of n)
 THETA(2 to power of n)
 
 // --------------------------------------------------------------------------------------------------------
+2.2 Masters Theoren: Recurrence Relation 
 
+T(n) = T(n-1) + 1 ----- O(n)
+T(n) = T(n-1) + n ----- O(n to power of 2)
+T(n) = T(n-1) + log n ----- O(n log n)
+T(n) = 2T(n-1) + 1 ----- O(2 to power of n)
+T(n) = 3T(n-1) + 1 ----- O(3 to power of n)
+T(n) = 2T(n-1) + n ----- O(n 2 to power of n)
+
+T(n) = aT(n-b) + f(n)
+a>0   b>0   and f(n) = O(n to pwoer of k) where K >= 0 
+
+case 
+1    if a < 1    O(n to power of k)
+                 O(f(n))
+2    if a = 1    O(n to power k+1)
+                 O(n*f(n))
+3    if a > 1    O(n to power of k, a to power of n/b)
+                 O(f(n)a to power n/b)
+
+// --------------------------------------------------------------------------------------------------------
+2.3.1 Recurrence Relation Dividing Function 
+
+Algorithm Test(int n)     -----T(n)
+{
+  if(n>1)                 
+  {
+    printf("/d",n);       ----- 1 
+    Test(n/2);            ----- T(n/2)
+  } 
+}
+-------------
+T(n) = T(n/2) + 1 
+
+T(n) = { 1                n = 1 }
+       { T(n/2)           n > 1 }
+
+       T(n)                                    ----- 1    
+     /      \
+    1        T(n/2)                            ----- 1      
+            /      \  
+           1    T(n/2 to power of 2)           ----- 1
+                   /     \
+                  1     T(n/2 to power of 3)   ----- 1           
+                            ...
+                            ...
+                            T(n/2 to power of k)
+                            n/2 to power of k = 1 
+K steps 
+n / 2 to power of k = 1 
+n = 2 to power of k 
+k = log n 
+
+2 to power of 5 = 32 
+5 = log 32 
+a to pwoer of b = c 
+b = log c 
+O(log n)
+
+T(n) = T(n/2) + 1                         ------ [1.] 
+
+T(n) = [T(n/2 to power of 2) + 1] + 1
+T(n) = T(n/2 to power of 2) + 2           ------ [2.]
+T(n) = T(n/2 to power of 3) + 3           ------ [3.]
+T(n) = T(n/2 to power of k) + k           ------ [4.]
+
+T(n) = T(n/2 to power of k) + k 
+Assume n / 2 to power of k = 1
+n = 2 to power of k and k = log n  
+T(n) = T(1) + log n 
+T(n) = 1 + log n  
+O(log n)
+
+// --------------------------------------------------------------------------------------------------------
