@@ -1680,3 +1680,61 @@ log(to power of 2) = 2 < k = 3
 THETA(n(to power of 3))
 
 // --------------------------------------------------------------------------------------------------------
+2.4.2 Examples for Master Theorem
+
+Case 1: 
+T(n) = 2T(n/2) + 1                   ----- THETA(n(to power of 1))
+T(n) = 4T(n/2) + 1                   ----- THETA(n(to power of 2))
+T(n) = 4T(n/2) + n(to power of 1)    ----- THETA(n(to power of 2))
+T(n) = 8T(n/2) + n(to power of 2)    ----- THETA(n(to power of 3))
+T(n) = 16T(n/2) + n(to power of 2)   ----- THETA(n(to power of 4))
+
+Case 3: 
+T(n) = T(n/2) + n(to power of 1)                                  ----- THETA(n)
+T(n) = 2T(n/2) + n(to power of 2)                                 ----- THETA(n(to power of 2))
+T(n) = 2T(n/2) + n(to power of 2) log n                           ----- THETA(n(to power of 2)log n)
+T(n) = 4T(n/2) + n(to power of 3) log(to power of 2) n            ----- THETA(n(to power of 3)log(to power of 2) n)
+T(n) = 2T(n/2) + n(to power of 2) / log n                         ----- THETA(n(to power of 2))
+
+Case 2:  
+T(n) = T(n/2) + 1                            ----- THETA(log n)
+T(n) = 2T(n/2) + n                           ----- THETA(n log n)
+T(n) = 2T(n/2) + n log n                     ----- THETA(n log(to power of 2)n)
+T(n) = 4T(n/2) + n(to power of 2)            ----- THETA(n(to power of 2))
+T(n) = 2T(n/2) + n(to power of 1) / log n    ----- THETA(n log log n)
+T(n) = 2T(n/2) + n / log n                   ----- THETA(n)             
+
+// --------------------------------------------------------------------------------------------------------
+2.5 Root function (Recurrence Relation)
+
+void Test(int n)                 ----- T(n)
+  {
+    if(n>2)
+    {
+      stmt;                      ----- 1 
+      Test(squareroot(n));       ----- T(square root of n)
+    }
+  }
+---------
+T(n) = T(square root of n) + 1 
+
+T(n) = {1                                  n = 2 }
+       {T(square root of(n)) + 1           n > 2 } 
+
+T(n) = T(square root of(n)) + 1                     
+T(n) = T(n(to power of 1/2)) + 1                    ----- 1
+T(n) = T(n(to power of 1/2(to power of 2))) + 2     ----- 2
+T(n) = T(n(to power of 1/2(to power of 3))) + 3     ----- 3
+...
+T(n) = T(n(to power of 1/2(to power of k))) + k     ----- 4 
+
+Assume n = 2(to power of m)
+T(2(to power of m)) = T(2(to power of m / 2 to power of k)) + k 
+Assume T(2(to power of m / 2 to power of k)) = T(2(to power of 1))
+... m / 2(to power of k) = 1 
+m = 2(to power of k) and k = log m 
+n = 2(to power of m), m = log n 
+k = loglog n 
+THETA(loglog n)
+
+// --------------------------------------------------------------------------------------------------------
