@@ -1469,3 +1469,52 @@ T(n) = 1 + log n
 O(log n)
 
 // --------------------------------------------------------------------------------------------------------
+2.3.2 Recurrence relation - substitution
+
+T(n) = { 1                n = 1 }
+       { T(n/2) + n       n > 1 }
+
+       T(n)                                           
+     /      \
+    n        T(n/2)                                       ----- n
+            /      \  
+          n/2       T(n/2 to power of 2)                  ----- n / 2 
+                   /     \ 
+   n/2(to power of 2)     T(n/2 to power of 3)            ----- n / 2 to power of 2 
+                          | ... 
+                          | ... 
+                          T()
+                         /   \
+    T(n / 2 to power of k)    n / 2 to power of k - 1     ----- n / 2 to power of k
+
+T(n) = n + n/2 + n/2 (to power of 2) + n/2(to power of 3) + ... + n/2 to pwoer of k 
+T(n) = [ 1 + 1/2 + 1/2(to power of 2) + 1/2 (to power of 3) + ... + 1/2 to power of k]  
+
+     __ k 
+    /
+= n \ 1 / 2 to power of i 
+    /
+    \__ i = 0 
+= 1 
+
+= n * 1 
+T(n) = n 
+O(n)
+
+T(n) = T(n/2) + n                         ------ [1.] 
+
+T(n) = [T(n/2 to power of 2) + n/2] + n
+T(n) = T(n/2 to power of 2) + n/2 + n           ------ [2.]
+T(n) = T(n/2 to power of 3) + n/2(to power of 2) + n/2 + 2           ------ [3.]
+T(n) = T n/2(to power of k) + n / 2(to power of k-1) + n / 2(to power of k-2) + ... + n/2 + n 
+
+T(n) = T(n/2(to power of 16) + n/2(to power of k-1) + ... + n/2 to power of 2 + )
+
+Assume n / 2(to power of k) = 1 
+.. n = 2(to power of k) and k = log n 
+T(n) = T(1) + n[1/2(to power of k-1) + 1/2(to power of k-2) + ... + 1/2 + 1 ]
+T(n) = 1 + n[1 + 1]
+T(n) = 1 + 2n 
+O(n)
+
+// --------------------------------------------------------------------------------------------------------
