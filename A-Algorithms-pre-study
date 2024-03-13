@@ -1581,3 +1581,102 @@ T(n) = n * 1 + n log n
 O(n log n)
 
 // --------------------------------------------------------------------------------------------------------
+2.4.1 Master theorem for Dividing functions 
+
+T(n) = aT(n/b) + f(n)
+a >= 1     f(n) = THETA(n(topowerof k)log n)
+b >= 1 
+
+1: log a 
+2: k 
+
+case 1: if log a > k then THETA(n (to power of log a))
+case 2: if log a = k 
+               if P > -1 THETA(n(to power of k)log(to power of P+1)n)
+               if P = -1 THETA(n(to power of k)loglog n)
+               if P < -1 THETA(n(to power of k))
+case 3: if log a < k 
+               if P >= 0 THETA(n(to power k)log n)
+               if P < 0  THETA(n(to power of k))
+
+T(n) = 2T(n/2) + 1 
+a = 2 
+b = 2 
+f(n) = THETA(1)
+     = THETA(n log n)
+k = 0, p = 0 
+
+log 2 = 1 > k = 0 
+case 1: THETA(n(to power of 1))
+
+T(n) = 4T(n/2) + n 
+log 4 = 2 > k = 1     p = 0 
+THETA(n to power of 2)
+
+T(n) = 8T(n/2) + n(to power of 2)
+log 8 = 3 > k = 2     p = 0
+THETA(n(to power of 3)) 
+
+T(n) = 9T(n/3) + n(to power of 1)
+log 9 = 2 > k = 1 
+THETA(n(to power of 2))
+T(n) = 9T(n/3) + n(to power of 2)
+log 9 = 2 = k = 2 
+O(n(to power of 2))
+
+T(n) = 8T(n/2) + n log n
+THETA(n to power of 3)
+
+T(n) = 2T(n/2) + n(to power of 1)
+log 2 = 1   k = 1   P = 0 
+THETA(n log n)
+
+T(n) = 4T(n/2) + n(to power of 2)
+log 4 = 2    k = 2 
+THETA(n(to power of 2) log n)
+
+T(n) = 4T(n/2) + n(to power of 2)log n
+log 4 = 2    k = 2 
+THETA(n(to power of 2) log(to powr of 2) n)
+
+T(n) = 4T(n/2) + n(to power of 2)log(to power of 2) n
+log 4 = 2    k = 2 
+THETA(n(to power of 2) log(to powr of 3) n)
+
+T(n) = 4T(n/2) + n(to power of 2)log(to power of 5) n
+log 4 = 2    k = 2 
+THETA(n(to power of 2) log(to powr of 6) n)
+
+T(n) = 8T(n/2) + n(to power of 3)
+log 8 = 3    k = 3
+THETA(n(to power of 3) log n)
+
+T(n) = 2T(n/2) + n(to power of 1)/log n
+log 2 = 1   k = 1   p = -1 
+THETA(n log logn)
+
+T(n) = 2T(n/2) + n(to power of 1)/log(to power of -2) n
+log 2 = 1   k = 1   p = -2 
+THETA(n)
+
+T(n) = T(n/2) + n(to power of 2)
+log(to power of 1) = 0 < k = 2 
+THETA(n(to power of 2))
+
+T(n) = 2T(n/2) + n(to power of 2)
+log(to power of 2) = 1 < k = 2 
+THETA(n(to power of 2))
+
+T(n) = 2T(n/2) + n(to power of 2) log n 
+log(to power of 2) = 1 < k = 2 
+THETA(n(to power of 2)log(to power of 2) n)
+
+T(n) = 4T(n/2) + n(to power of 3)
+log(to power of 2) = 2 < k = 3
+THETA(n(to power of 3))
+
+T(n) = 4T(n/2) + n(to power of 3) / log n 
+log(to power of 2) = 2 < k = 3
+THETA(n(to power of 3))
+
+// --------------------------------------------------------------------------------------------------------
