@@ -1812,5 +1812,303 @@ min ----- 1 O(1)
 max ----- log n O(log n)
 
 // --------------------------------------------------------------------------------------------------------
+2.6.1 Binary Search Recursive Method 
+
+A 3 6 8 12 14 17 25 29 31 36 42 47 53 55 62
+  1 2 3 4  5  6  7  8  9  10 11 12 13 14 15 
+
+Algorithm RbinSearch(l,h,key)    ----- T(n)
+{
+  if(l==h)
+  {
+    if(A[l]==key)                            ----- 1 
+        return l; 
+    else
+        return 0; 
+  }
+  else
+  {
+    mid = (l + h)/2;                          ----- 1 
+    if(key = A[mid])                          ----- 1 
+         return mid;  
+    if(key < A[mid])                          ----- 1 
+         return RbinSearch(l,mid -l, key);
+    else                                      ----- T(n/2)
+         return RbinSearch(mid + l, h, key);
+  }
+}
+
+T(n) = {1             n = 1 }
+       {T(n/2) + 1    n > 1 }
+T(n) = T(n/2) + 1 
+log(to power of 1) = 0 
+O(log n)
+
+// --------------------------------------------------------------------------------------------------------
+2.6.3 Heap sort, Heapify, Heap, Priority Queues
+
+1. Array Representation of BT 
+2. Complete Binary Tree
+3. Heap
+4. Insert & Delete
+5. Heap Sort   
+6. Heapify 
+7. Priority Queue 
+
+     A                  A                  A 
+    / \                / \                / \
+   B   C               B  C              B   C 
+  / \ / \             / \                   / \
+  D E F  G            D E                   D  E
+
+(T)A B C D E F G       A B C D E         A B C - - D E 
+   1 2 3 4 5 6 7       1 2 3 4 5         1 2 3 4 5 6 7 
+
+if a Node is at index ----- i 
+its left child is at  ----- 2 * 1 
+its right child is at ----- 2 * i + 1 
+its parent is at      ----- i / 2 
+
+Is this binary tree ? 
+
+     A                  A                  A 
+    / \                / \                / \
+   B                  B   C              B   C 
+  / \                /                      / 
+  D E               D                      D 
+  [yes]             [yes]               [no] 
+
+     A                  A                  A 
+    / \                / \                / \
+   B   C              B   C              B   C 
+  / \                / \   \            / \ / \
+ D   E              D   E   F           D E F G    
+/ \                                    /
+F  G                                   H 
+[yes]               [no]               [yes]
+
+----
+Heap
+
+    Max Heap                    Min Heap 
+       50                         10
+     /    \                       / \ 
+    30     20                    30  20 
+  /  \    /   \                 / \  / \
+ 15   10  8   16               35 40 32 25 
+
+H 50 30 20 15 10 8  16         H 10 30 20 35 40 32 25 
+  1  2  3  4  5  6  7            1  2  3  4  5  6  7 
+
+-----------
+Insert Sort 
+            50
+          /    \
+         30     20
+        /  \    /   \
+       15  10   8   16 
+      / 
+     [60] = insert  
+H = 50 30 20 15 10 8  16 | 60 
+    1  2  3  4  5  6  7  | 8 
+
+            60 
+          /    \
+         50     30
+        /  \    /   \
+       30  10   8   16 
+      / 
+     [15] = insert  
+H = 60 50 20 30 10 8  16 | 15 
+    1  2  3  4  5  6  7  | 8 
+
+------
+Delete 
+            60 
+          /    \
+         30 <-> 20
+        /  \    /  
+       15  10   8   
+      / 
+     [15] = insert  
+
+H = 60 50 20 30 10 8  16 | 15 
+    1  2  3  4  5  6  7  | 8 
+
+            30 
+          /    \
+         16     20
+        /  \    /  
+      15<->10   8   
+H = 30 10 20 15 10 8  - 
+    1  2  3  4  5  6  7       
+       
+-------
+HEAP 
+
+create Heap - heap 
+[1.] 
+
+     10 
+
+|10|20|15|30|40|
+|1 |2 |3 |4 |5 |
+
+[2.]
+     20
+    /
+   10
+_____________________
+|20 |10 |   |   |   |
+|1  |2  |   |   |   |
+     *exchanged  
+
+[3.]
+     20  
+    /  \ 
+  10    15
+_____________________
+|20 |10 |15 |   |   |
+|1  |2  |3  |   |   |
+         *added   
+
+[4.]
+     30  
+    /  \ 
+  20    15
+ /
+10 
+_____________________
+|30 |20 |15 |10 |   |
+|1  |2  |3  |4  |   |
+- 30 gets exchanged with 20 
+- 20 gets exchanged with 10 
+            
+[5.]
+     40  
+    /  \ 
+  30    15
+ /  \ 
+10   20
+_____________________
+|40 |30 |15 |10 |20 |
+|1  |2  |3  |4  |5  |
+- 40 gets exchanged with 30
+- 30 gets exchanged with 20
+= 20 is moved to place 5 
+
+2. STEP FOR HEAP SORT  
+- we have already created a heap 
+- deleting elements 
+
+[1.]
+     40  
+    /  \ 
+  30    15
+ /  \ 
+10   20
+
+     30  
+    /  \ 
+  20    15
+ /  X 
+10   X 
+_____________________
+|40 |30 |15 |10 |20 |
+|1  |2  |3  |4  |5  |
+- 40 gets deleted 20 takes its place 
+- 20 gets exchanged with 30
+- 30 takes lead place 
+_____________________
+|30 |20 |15 |10 |   |
+|1  |2  |3  |4  |   |
+
+[2.]
+     30  
+    /  \ 
+  20    15
+ /  
+10 
+
+     20  
+    /  \ 
+  10    15
+
+- 30 gets deleted 10 takes its place 
+- 10 gets exchanged with 20 
+- 20 takes lead place 
+_____________________
+|20 |10 |15 |   |   |
+|1  |2  |3  |   |   |
+
+[3.]
+     20  
+    /  \ 
+  10    15
+
+     15  
+    /  
+  10    
+
+- 20 gets deleted 15 takes it place 
+_____________________
+|15 |10 |   |   |   |
+|1  |2  |   |   |   |
+
+[4.]
+     15  
+    /  
+  10
+
+- 15 gets deleted 10 takes its place 
+_____________________
+|15 |10 |   |   |   |
+|1  |2  |   |   |   |
+
+[5.] 
+     10 
+_____________________
+|10 |   |   |   |   |
+|2  |   |   |   |   |
+
+------- 
+Heapify 
+            10
+          /     \
+         20      15
+        /  \    /  \
+       12  40  25  18 
+ 
+H 10 20 15 12 40 25 18 
+   1  2  3  4  5  6  7
+
+- 25 gets exchanged with 15 
+- 40 gets exchanged with 10
+- 20 gets excchanged with 10  
+
+create -> O(n log n)
+Heapify -> O(n)
+
+--------------
+Priority Queue 
+
+- small number 
+Higher Priority 
+A 8 6 3 10 5 4 9 
+Min heap 
+             3
+          /     \
+         5       9
+        /  \    /  \
+       10  8   6    9 
+
+- large number 
+Higher Priority
+B 8 6 3 10 5 4 9 
+            10
+          /     \
+         8       9
+        /  \    /  \
+       6    5  3    4 
 
 // --------------------------------------------------------------------------------------------------------
