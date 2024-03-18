@@ -2112,3 +2112,187 @@ B 8 6 3 10 5 4 9
        6    5  3    4 
 
 // --------------------------------------------------------------------------------------------------------
+2.7.1 Two way MergeSort - Iterative method 
+
+Merge 
+
+A    B    C 
+2    5     
+8    9 
+15   12 
+18   17 
+
+A = i 
+B = j 
+C = k 
+
+1. i = 2     = 1. k 
+1. j = 5     = 2. k 
+2. i = 8     = 3. k 
+2. j = 9     = 4. k 
+3. i = 15    = 5. k 
+3. j - 12    = 6. k 
+4. i = 18    = 7. k 
+4. j = 17    = 8. k 
+
+A    B    C 
+2    5    2 
+8    9    5 
+15   12   8 
+18   17   9  
+m    m    15    THETA(m+n)
+          12
+          18
+          17 = k 
+
+Algorithm Merge(A,B,m,n)
+{
+  i = 1; j = 1; k = 1
+  while(i<=m && j <=n)
+  {
+  if(A[i] < B[j])
+     C[k++] = A[i++]; 
+  else 
+     C[k++] = B[j++];
+  }
+for( ; i<m; i++)
+     C[k++ = A[i]]; 
+for( ;j<=n;j++)
+     C[k++] = B[j]; 
+
+---------
+Merge 
+4-Way merging 
+M-way Merging 
+
+A   B   C   D 
+4   3   8   2 
+6   5   10  4 
+12  9   16  18 
+
+- first is taken 4, 3, 8, 2 = 2 < 3 < 4
+- 2 is moved to number under which is 4, 3 to 5 and 4 to 6 
+- 8 is left intact since it is still largest of number that are acutal = 6, 5, 8, 4
+
+L 
+2 
+3 
+4 
+4 
+5 ..... 
+
+A   B   C   D 
+4   3   8   2 
+6   5   10  4 
+12  9   16  18 
+ \  /    \  / 
+  3       2
+  4       4
+  5       8 
+  6       10 
+  9       16 
+  12      18 
+   \      /
+    \    /
+     ...
+     ... 
+
+A B C D 
+A + B = l1 
+l1 + C = l2 
+l2 + D = l3 
+
+A B C D 
+C + D = l1 
+l1 + B = l2 
+l2 + A = l3 
+
+-------------------
+2-way Merge Sort                     | 
+                                     | 8 elements / 2 / 2 / 2 = 1 
+9  3  7  5  6  4  8  2               | 
+\  /  \  /  \  /  \  /               | 
+3  9  5  7 | 4  6  2  8    I. pass   | n   8 / 2(to power of 3) = 1
+   \  /        \  /                  | 
+3  5  7  9 | 2  4  6  8    II. pass  | n   8 = 2(to power of 3)  
+         \   /                       | 
+     2 3 4 5 6 7 8 9      III. pass  | n   8 = 2(to power of 3)
+                                     |     log 8 = 3 
+                                     |     (base 2)
+                                     |     == number of passes log n 
+
+// --------------------------------------------------------------------------------------------------------
+2.7.2 Merge Sort Algorithm 
+
+9  3  7  5  6  4  8  2   | Algorithm MergeSort(l, h)              
+\  /  \  /  \  /  \  /   | {
+3  9  5  7 | 4  6  2  8  |     if(l<h) 
+   \  /        \  /      |     {
+3  5  7  9 | 2  4  6  8  |         mid = (l+h)/2;
+         \   /           |         MergeSort(6,mid);
+     2 3 4 5 6 7 8 9     |         MergeSort(mid+1,h);
+                         |         Merge(l,mid,h);
+                         |      }
+                         | }
+
+Time taken
+____  ____   ____  ____   ----- n 
+3  9  5  7 | 4  6  2  8  
+   \  /        \  /    
+___________ ___________   ----- n 
+3  5  7  9 | 2  4  6  8  
+         \   /   
+     _______________      ----- n         
+     2 3 4 5 6 7 8 9      n * log n 
+
+Talking Numbers 
+9  3  7  5  6  4  8  2
+     /          \
+  3 5 7 9     2 4 6 8 
+    / \         / \
+  3 9  5 7    4 6  2 8 
+ /  \  /  \   / \  / \ 
+ 9  3  7  5   6  4 8  2 
+
+ Algorithm MergeSort(l, h)      ----- T(n)        
+    {
+        if(l<h) 
+       {
+        mid = (l+h)/2;          ----- 1 
+        MergeSort(6,mid);       ----- T(n/2)
+        MergeSort(mid+1,h);     ----- T(n/2)
+        Merge(l,mid,h);         ----- n 
+       }  
+    }
+T(n) = 2T(n/2) + n 
+
+T(n) = { 1               n = 1 }
+       { 2T(n/2) + n     n > 1 }
+a = 2 
+b = 2        log 2 = 1 
+f(n) = n     n(to power of k) = n(to power of 1)
+
+log 2 = k 
+THETA(n log n)
+
+// --------------------------------------------------------------------------------------------------------
+2.7.3 Merge Sort in Depth 
+
+Pros 
+1. Large size List 
+2. Linked List 
+3. External Sorting (RAM)
+4. Stable 
+
+Cons 
+1. Extra Space (not inplace sort)
+2. No small problem
+3. Recursive 
+
+O (n + log n )
+THETA(n)
+
+// --------------------------------------------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------------------------------------------
