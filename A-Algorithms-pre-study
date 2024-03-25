@@ -721,19 +721,32 @@ OMEGA(1), O*|(n log n)
 1.9 Properties of Asymptotic notations
 
 General Properties
+- if we multiply function with anything the BIG O will be the same, it is also true for OMEGA 
+
 if f(n) is O(g(n)) then a * f(n) is O(g(n))
     sub example: 
     f(n) = 2n2power + 5 is O(n2power)
     then 7*f(n) = 7(2n2power + 5)
       = 14n2power + 35 is O(n2power)
 
+if f(n) is OMEGA(g(n)) then a * f(n) is OMEGA(g(n))
+    sub example: 
+    f(n) = 2n2power + 5 is O(n2power)
+    then 7*f(n) = 7(2n2power + 5)
+      = 14n2power + 35 is OMEGA(n2power)
+
 Reflexive
+- so function is upperbound of itself, yes that is true (upperbound is any any function greater than or EQUAL to itself) 
+
 if f(n) is given then f(n) = O(f(n))
     sub example: 
     f(n) = n2power   
     O(n2power)
 
 Transitive 
+- if g(n) is upperbound for f(n), and h(n) is upperbound for g(n), than h(n) is also upperbound for f(n) 
+- this is true for OMEGA, THETA and BIG O 
+
 if f(n) is O(g(n)) and g(n) is O(h(n))
 then f(n) = O(h(n))
     sub example: 
@@ -742,6 +755,8 @@ then f(n) = O(h(n))
     then n is O(n3power)
 
 Symmetric 
+- Symmetric property is only true for THETA notation 
+
 if f(n) is THETA(g(n)) then g(n) is THETA(f(n))
     sub example: 
     f(n) = n2power, g(n) = n2power
@@ -749,6 +764,8 @@ if f(n) is THETA(g(n)) then g(n) is THETA(f(n))
     g(n) = THETA(n2power)
 
 Transpose Symmetric
+- one function is upperbound for other function, and other function is lower bound for first function 
+
 if f(n) = O(g(n)) then g(n) is OMEGA(f(n))
     sub example; 
     f(n) = n, g(n) = n2power
@@ -757,27 +774,26 @@ if f(n) = O(g(n)) then g(n) is OMEGA(f(n))
     and 
     n2power is OMEGA(n)
 
-
+- another case: 
+- if f(n) is acting both as upperbound and lowerbound for g(n) 
 
 if f(n) = O(g(n))
 and f(n) = OMEGA(g(n))
 g(n) <= f(n) <= g(n)
     f(n) = THETA(g(n))
 
+- another case: 
+- if we add two functions together, the degree of functions will be maximum of two terms 
 
 if f(n) = O(g(n))
 and d(n) = O(e(n))
-then f(n) + d(n) = 
+then f(n) + d(n) = O(max(g(n), e(n))
     sub example: 
     f(n) = n = O(n)
     d(n) = nto2power = O(nto2power)
     f(n) + d(n) = n + n2power = O(nto2power)
 
-then f(n) + d(n) = O(max(g(n)))
-    sub example: 
-    f(n) = nto2power = O(n)
-    d(n) = nto2power = O(nto2power)
-    f(n) + d(n) = n2power + n = O(nto2power)
+- in this case it will be sum of two functions 
 
 if f(n) = O(g(n))
 and d(n) = O(e(n))
@@ -791,10 +807,15 @@ n     nto2power          nto3power
 3     3to2power = 9      3to3power = 27
 4     4to2power = 16     4to3power = 64
 
+- basic methodology of functions is comparing which one is bigger or equal 
+- that is 1. method 
+
 nto2power         nto3power 
    Apply Log on Both sides 
 log nto2power     log nto3power
 log nto2power  <  log nto3power
+
+- 2. method is applying log on both sides to see which one is smaller and which one is greater 
 
 -------------------------------------|
 log ab = log a + log b               |
@@ -806,11 +827,20 @@ a topower b = n then b = log n       |
                             a        |
 -------------------------------------|
 
-f(n) = ntopower2 log n > g(n) = n(log n) to power of 10 
+- when we are not sure which side is greater we apply log method to find out: 
+- after APPLY LOG, we use log table from above 
+- it may have seemed like n(log n)**10 is bigger but with calculation we find that 2logn > logn (so left site is bigger) 
+
+f(n) = ntopower2 log n           g(n) = n(log n) to power of 10 
                       APPLY LOG 
 log[n topower2 log n]           log[n(log n)to power of 10]
 log n topower 2 + loglog n      log n + log (log n)
 2logn + loglogn                 logn+ 10loglogn 
+
+f(n) = ntopower2 log n    >     g(n) = n(log n) to power of 10 
+
+- asympthotically they are equal because 3n / 2n to power of square root of n is same as n to pwoer of square root of n 
+- value wise is left site bigger 
 
 f(n) = 3n(n to power of (square root of n))            g(n) = 2 to power of (square root of n log n)
 3 n to power (of square root of n)                     2 to power of (log n to power of (square root of n))
@@ -818,47 +848,66 @@ f(n) = 3n(n to power of (square root of n))            g(n) = 2 to power of (squ
 3 n to power (of square root of n)
 2 n to power of 2
 
+f(n) = 3n(n to power of (square root of n))      =     g(n) = 2 to power of (square root of n log n)
+
 ---------------------------------
 1.10.2 Comparison of Functions #2 
-f(n) = n to power of log n < g(n) = n to square root of n 
+
+1. 
+f(n) = n to power of log n     g(n) = n to square root of n 
                       APPLY LOG 
 log n to power of log n        log 2 to square root of n 
 log n * log n                  square root of n log to power of 2 
 log (to power of 2) n          square root of n = n to power of 1/2 
 2 loglog n                     1/2 log n 
 
+f(n) = n to power of log n  <  g(n) = n to square root of n 
 
+2. 
 f(n) = 2 to power of log n     g(n) = n to power of square root of n 
 log n * log to power of 2      square root of n, log n 
 log n                          square root of n, log n 
 
+f(n) = 2 to power of log n  <  g(n) = n to power of square root of n 
 
+3. 
 f(n) = 2 to power of n         g(n) = 2 to power of 2n 
 log 2 to power of n            log 2 to power of 2n 
 n log 2                        2n log 2 
 
+f(n) = 2 to power of n     <   g(n) = 2 to power of 2n 
+
+4. 
 g 1 (n) = {n to power 3        n < 100  }
           {n to power 2        n >= 100 }
 g 2 (n) = {n to power 2        n < 10000  }
           {n to power 3        n >= 10000 }
 
+- g1 is > g2 till 100, g1 = g2 till 10000, g2 > g1 to infinity
+- in asymphtotic meaning g2 > g1 
+
 Exercise True / False 
-1. (n+k) to power m = THETA(n to power m)          (n+3) to power of 2 = THETA(n to power 2)
-2. 2 to power of n+1 = O(2 to power n)              2*2 to power of n 
-3. 2 to power of 2n = O(2 to power of n)            4 to pwoer of n > 2 to power of n              
-4. Square root(log n) = O(loglog n)
-5. n to power of log n = O(2 to power of n)         log n * log n n 
+1. (n+k) to power m = THETA(n to power m)     [correct]            (n+3) to power of 2 = THETA(n to power 2)
+2. 2 to power of n+1 = O(2 to power n)        [correct]            2*2 to power of n 
+3. 2 to power of 2n = O(2 to power of n)      [incorrect]          4 to pwoer of n > 2 to power of n              
+4. Square root(log n) = O(loglog n)           [incorrect]
+5. n to power of log n = O(2 to power of n)   [correct]            log n * log n n 
 
 // --------------------------------------------------------------------------------------------------------
 1.11 Best, Worst and Average Case analysis 
+- we will be looking at two specific algorithms: 
 1. Linear Search
 2. Binary Search Tree 
 
 1. Linear Search 
+- linear search searches for element from left to right in given list 
 
 A 8 6 12 5 9 7 4 3 16 18
   0 1 2  3 4 5 6 7 8  9 
   key = 7 
+  (search successfull = index 5 
+  key = 20 
+  (search unsuccessfull = not inside list) 
 
 Best case ---- searching key element present at first inolese
 Best case Time ---- 1 O(1)
@@ -873,33 +922,68 @@ Average case ---- all possible case time / no of cases
            1 + 2 + 3 + ... + n    n(n+1) / 2    n + 1 
 Avg time = -------------------- = ---------- = -------
                      n                 n           2 
+- avereage case time might not be feasable on all algorithms
+- in scenario like that we use wrost case time 
 
 ---------------|
 B(n) = O(1)    |
-w(n) = O(n)    |
+W(n) = O(n)    |
 A(n) = n+1 / 2 |
 ---------------|
 
-B(n) = 1          w(n) = n 
-B(n) = O(1)       w(n) = O(n)
-B(n) = OMEGA(1)   w(n) = OMEGA(n)
-B(n) = THETA(1)   w(n) = THETA(n)
+- CASES ARE NOT RELATED TO NOTATIONS
+- NOTATIONS ARE FOR FUNCTIONS 
+- CASES ARE JUST TYPE OF ANALYSIS ON ALGORITHM 
+B = best case 
+B(n) = 1          
+B(n) = O(1)       - we can write best case is O(1) 
+B(n) = OMEGA(1)   - also OMEGA(1) 
+B(n) = THETA(1)   - also THETA(1)
+
+w = Worst case 
+w(n) = n          - function is linear 
+w(n) = O(n)
+w(n) = OMEGA(n)
+w(n) = THETA(n)
+
+- asummption that Omega is for best case is WRONG 
+- it can be used for best case, worst case etc. 
 
 2. Binary Search Tree 
+- purpose of binary search tree is for searching 
+- elements are organized for every node all smaller elements are on left side, all greater nodes are on right side 
+- so for searching smaller element we go to left side, for bigger element we go to right side 
+
+- example: we are looging for 15, it takes 3 comparisons to find it, it is comparable to high of tree 
+- high = log n == 3 comparisons because we have 7 elements 
+- high of a tree is log n = time taken is log n 
 
            20 
          /    \
         10     30 
        /  \   /  \ 
-       5  15 25  40 
-Best case ---- search root ele 
-Best case Time ---- B(n) = 1 
-worst case ---- search for leaf ele
+       5  15 25  40
+
+Best case       ---- search root element 
+Best case Time  ---- B(n) = 1 
+worst case      ---- search for leaf ele
 worst case Time ---- w(n) = log n 
 
-40 -- 30 -- 25 -- 20 -- 15 -- 10 -- 5
--------------------------------------
-                   n 
+- in worst case scenario we may have binary search tree data structure with each element one by another
+- in this example, time complexity is n 
+
+             40 
+            /
+           30 
+          / 
+         25 
+        / 
+       20 
+      / 
+     15 
+    / 
+   10 
+                   
 worst case Time - w(n) = h 
 min w(n) = log n 
 max w(n) = n 
@@ -908,12 +992,13 @@ max w(n) = n
 1.12 Disjoint Sets Data Structure - Weighted Union and Collapsing Find 
 
 Disjoint Sets 
+- disjoint sets are comparable to sets in mathematics 
 
-1. Find 
-2. Union 
+1. Find                       - find operation is to find out any element to which set it belongs (5 = belongs to set 2, 3 belongs to set 1
+2. Union                      - union operation connects two sets with joint edge, when we add union edge
 
-S1 = {1, 2, 3, 4}
-S2 = (5, 6, 7, 8)  
+S1 = {1, 2, 3, 4}             - S1 = set S1 components 
+S2 = (5, 6, 7, 8)             - S2 = set S2 components 
 
  u  v 
 (4, 8)
@@ -921,24 +1006,27 @@ S2 = (5, 6, 7, 8)
 
 S1US2 = {1, 2, 3, 4, 5, 6, 7, 8}
 
-  2 --- 3 
- /       \
-1         4 
-          
-5         8
- \       / 
-  6 --- 7
+  2 --- 3                          2 --- 3     
+/        \                        /       \    
+1         4                      1         4   
+                                 |         |   = performing union, S1US2 = {1, 2, 3, 4, 5, 6, 7, 8} = new set 3, S3 = {1, 2, 3, 4, 5, 6, 7, 8}
+5         8                      5         8   
+ \       /                        \       /    
+  6 --- 7                          6 --- 7     
 
 
-u = {1, 2, 3, 4, 5, 6, 7, 8}
-S1 = {1, 2}
-S2 = {3, 4}
-S3 = {5, 6}
-S4 = {7, 8}
-S5 = {1, 2, 3, 4}                (2, 5)
-S6 = {1, 2, 3, 4, 5, 6}          (1, 3)
-S7 = {1, 2, 3, 4, 5, 6, 7, 8}    (6, 8)
-                                 (5, 7)
+How to find graph 
+
+u = {1, 2, 3, 4, 5, 6, 7, 8}                     - we will be finding sets 
+S1 = {1, 2}                                      - this is joint 1 
+S2 = {3, 4}                                      - this is joint 2 
+S3 = {5, 6}                                      - this is joint 3 
+S4 = {7, 8}                                      - this is joint 4 
+S5 = {1, 2, 3, 4}                (2, 5)          - since all numbers from "u" are joint, we need to joint two sets into UNION = new set S5     |     S1 S2 are removed and joint into new set S5 
+                                                 - now we joint new set S6 with S5 and S3 
+S6 = {1, 2, 3, 4, 5, 6}          (1, 3)          - these are already included in the set 
+S7 = {1, 2, 3, 4, 5, 6, 7, 8}    (6, 8)          - joint set S6 and S7 
+                                 (5, 7)          - already included in the set 
 1 ---- 3 
 |      |
 |      | 
@@ -950,7 +1038,7 @@ S7 = {1, 2, 3, 4, 5, 6, 7, 8}    (6, 8)
 |      |
 6 ---- 8  
 
-u = {1, 2, 3, 4, 5, 6, 7, 8}
+S7 = {1, 2, 3, 4, 5, 6, 7, 8}
      1. 2. 3. 4. 5. 6. 7. 8. 
 
 S1 = {1, 2} | S2 = {3, 4} | S3 = {5, 6} | S4 = {7, 8} | 
@@ -960,37 +1048,38 @@ S6 = {1, 2, 3, 4, 5, 6}
 
     1 
    /|\
-  2 | 5
+  2 | 5 
     3  \ 
     |   6
     4
 
-Parent = -1 -1 -1 -1 -1 -1 -1 -1 
-          1  2  3  4  5  6  7  8
-
 // --------------------------------------------------------------------------------------------------------
 2. Divide and Conquer 
+- related to strategy to solving a problem 
+- strategy is a approach or design for solving a problem 
+we have problem P,  size = n 
 
       P 
 /   /  \  ... \ 
-P1 P2  P3 ... Pk
+P1 P2  P3 ... Pk    - we have main problem broken down into smaller sub-problems 
 |  |   |  ... |
-S1 S2  S3 ... Sk
+S1 S2  S3 ... Sk    - S = solutions for each sub-problem 
 \  \   /  ... /
  \  \ /      /
-      S
+      S             = Solutions are summed and find solution to big problem 
 
-DAC(P)
+ 
+DAC(P)                                      - divide and conquer strategy (DAC = divide and conquer upon problem P) 
 {
-    if(small(P))
+    if(small(P))                            - if the problem is small, directly solve it 
     {
         S(P)
     }
-    else 
-    {
-        divide P into P1, P2, p3, ... Pk 
-        Apply DAC(P1), DAC(P2), ... 
-        Combine(DAC(A)), DAC(P2),...
+    else                                    - if it is large: 
+    { 
+        divide P into P1, P2, p3, ... Pk    - divide problems into sub problems 
+        Apply DAC(P1), DAC(P2), ...         - apply divide and conquer
+        Combine(DAC(A)), DAC(P2),...        - combine solutions 
     }
 }
 
@@ -1006,22 +1095,23 @@ void Test(int n)
     }
 }
 ------
-Test(3)
+Test(3)                    - suppose we are calling this function by calling 3 
 
-     Test(3)
+     Test(3)               - 3 is greater > 0, -1 Test(2)
      /      \
-    -3      Test(2)
+    -3      Test(2)        ...
             /      \ 
-          -2       Test(1)
+          -2       Test(1)      ...
                    /     \
-                  -1     Test(0)
+                  -1     Test(0)     ...
                             | 
                             x 
                         ---------
                         3 + 1 
                         f(n) = n + 1 call O(n)
 
-- Recurrence method 
+Recurrence method 
+- recurrence relation 
 
 void Test(int n) ----- T(n)
 {
@@ -1033,11 +1123,12 @@ void Test(int n) ----- T(n)
 }
 T(n) = T(n-1) + 1 
 
+recurrence relation for this problem: 
 T(n) = { 1          n = 0}
        { T(n-1)+1   n > 0}
+- we are going to solve this recurrence relation by substitution method down 
 
-
-- Substitution method 
+Substitution method 
 
 void Test(int n) ----- T(n)
 {
@@ -1057,19 +1148,19 @@ T(n) = T(n-1) + 1           T(n) = T(n-1) + 1    |
                             T(n-1) = T(n-2) + 1--|
 substitute T(n-1)           T(n-2) = T(n-3) + 1
 T(n) = [T(n-2) + 1] + 1            |
-T(n) = T(n-2) + 2 <----------------|
+T(n) = T(n-2) + 2 <----------------|                   - we dont know T(n-1), but we know T(n) = T(n-1) + 1 so T(n-1) = T(n-2) + 1
 T(n) = [T(n-3) + 1] + 2
 T(n) = T(n-3) + 3 
 .... continues for k times 
-T(n) = T(n-k) + k
-
-T(n) = T(n-k) + k
+T(n) = T(n-k) + k                                      - this is important part of substitution method 
+ 
+T(n) = T(n-k) + k             - we know that n = 0 
 Assume n - k = 0
 ... n = k 
 T(n) = T(n-n) + n 
 T(n) = T(0) + n 
 T(n) = 1 + n 
-O(n)
+THETA(n)
 
 // --------------------------------------------------------------------------------------------------------
 // 2.1.2 Recurrence Relation (T(n)=T(n-1) + n) #2
@@ -1085,7 +1176,9 @@ void Test(int n)         ----------- T(n)
         Test(n-1);       ----------- T(n-1)
     }
 }
------------
+-----------                
+- in asympthotic meaning, instead of writing T(n-1) + 2n + 2 we can write T(n-1) + 2
+
 T(n) = T(n-1) + 2n + 2
 
 T(n) = T(n-1) + 2
@@ -1112,6 +1205,8 @@ T(n) = { 1             n = 0}
                      T(n) = n(n+1) / 2 
                           = O(n to power of 2)
 
+Recurrence relation by n
+
 T(n) = T(n-1) + n --- [1.]    T(n) = T(n-1) + n 
         |                     T(n-1) = T(n-2) + n-1 
         |                                   |
@@ -1130,7 +1225,7 @@ Assume n - k = 0
 T(n) = T(n-n) + (n-n+1) + (n-n+2) + ... + (n-1) + n
 T(n) = T(0) + 1 + 2 + 3 ... + (n-1) + n
 T(n) = 1 + n(n+1) / 2 
-O(n to power of 2)
+THETA(n to power of 2)
 
 // --------------------------------------------------------------------------------------------------------
 2.1.3 Recurrence Relation (T(n)=T(n-1) + log n)
@@ -1147,15 +1242,17 @@ void Test(int n)         ----------- T(n)
     }
 }
 ---------
+Recurrence Relation: 
+
 T(n) = T(n-1) + log n 
 T(n) = { 1                n = 0}
        {T(n-1) + log n    n > 0}
 
-       T(n)                                  
+       T(n)                        - T(n) is taking log(n) time and calling itself for T(n-1) time    
      /      \
    log n    T(n-1)                           
             /      \  
-        log(n-1)    T(n-2)
+        log(n-1)    T(n-2)          
                    /     \
                 log(n-2)  T(n-3)               
                             | 
@@ -1168,7 +1265,7 @@ T(n) = { 1                n = 0}
                                         x 
 log(n-1) + ... + log 2 + log 1 
 log[n * (n-1) * ... * 2 * 1]
-log n ! 
+log n! 
 O(n log n)
 
 T(n) = { 1                 n = 0}
@@ -1186,13 +1283,15 @@ T(n) = T(0) + log n!
 T(n) = 1 + log n! 
 O(n log n)
 
-T(n) = T(n-1) + 1 ----- O(n)
-T(n) = T(n-1) + n ----- O(n to power of 2)
-T(n) = T(n-1) + log n ----- O(n log n)
-T(n) = T(n-1) + n to power of 2 ----- O(n to power of 3)
-T(n) = T(n-2) + 1 ----- n/2 O(n)
-T(n) = T(n-100) + n ----- O(n to power of 2)
-T(n) = 2T(n-1) + 1  
+RECURRENCE RELATION EXAMPLES 
+
+T(n) = T(n-1) + 1                  ----- O(n)                               - first video               - whatever term we have afterT(n-1) just multiply it by n to get O of it 
+T(n) = T(n-1) + n                  ----- O(n to power of 2)                 - second video 
+T(n) = T(n-1) + log n              ----- O(n log n)                         - third video 
+T(n) = T(n-1) + n to power of 2    ----- O(n to power of 3)   
+T(n) = T(n-2) + 1                  ----- n/2 O(n)
+T(n) = T(n-100) + n                ----- O(n to power of 2)
+T(n) = 2T(n-1) + 1  = next lesson 
 
 // --------------------------------------------------------------------------------------------------------
 Recurrence Relation T(n) = 2 T(n-1) + 1 
@@ -1207,6 +1306,8 @@ Algorithm Test(int n) ----- T(n)
   }
 }
 ------
+Recurrence Relation: 
+
 T(n) = 2T(n-1) + 1 
 
 T(n) = {1                n = 0 }
@@ -1241,6 +1342,8 @@ Assume n - k = 0
 = 2 (to power of n+1) - 1
 O(2 to power of n)
 
+back substitution method: 
+
 T(n) = 2T(n-1) + 1                        ------ [1.] 
 T(n) = 2[T(n-2) + 1] + 1
 T(n) = 2 (to power of 2) * T(n-2) + 2 + 1      ------ [2.]
@@ -1259,24 +1362,37 @@ THETA(2 to power of n)
 
 // --------------------------------------------------------------------------------------------------------
 2.2 Masters Theoren: Recurrence Relation 
-
-T(n) = T(n-1) + 1 ----- O(n)
-T(n) = T(n-1) + n ----- O(n to power of 2)
-T(n) = T(n-1) + log n ----- O(n log n)
-T(n) = 2T(n-1) + 1 ----- O(2 to power of n)
-T(n) = 3T(n-1) + 1 ----- O(3 to power of n)
+- we have already solved decreasing functions                    case    1    if a < 1    O(n to power of k)                   ----------- \ 
+                                                                              O(f(n))                                                       \ 
+T(n) = T(n-1) + 1 ----- O(n)                                             2    if a = 1    O(n to power k+1)                    --------------\ 
+T(n) = T(n-1) + n ----- O(n to power of 2)                                    O(n*f(n))                                                      / MASTERS THEOREM 
+T(n) = T(n-1) + log n ----- O(n log n)                                                                                                      /  - we can solve all recurrence relation problems with this
+T(n) = 2T(n-1) + 1 ----- O(2 to power of n)                              3    if a > 1    O(n to power of k, a to power of n/b)  --------- /   - there is not LOGIC IN THIS THEOREM SO ONLY POSSBILE WAY IS TO LEARN 
+T(n) = 3T(n-1) + 1 ----- O(3 to power of n)                              O(f(n)a to power n/b)
 T(n) = 2T(n-1) + n ----- O(n 2 to power of n)
 
-T(n) = aT(n-b) + f(n)
-a>0   b>0   and f(n) = O(n to pwoer of k) where K >= 0 
+T(n) = aT(n-b) + f(n)                                     = general form of recurrence relation 
+a>0   b>0   and f(n) = O(n to pwoer of k) where K >= 0    = we assume this with recurrence relation from above 
 
 case 
 1    if a < 1    O(n to power of k)
                  O(f(n))
-2    if a = 1    O(n to power k+1)
+2    if a = 1    O(n to power k+1)                        = this is masters theorem 
                  O(n*f(n))
 3    if a > 1    O(n to power of k, a to power of n/b)
                  O(f(n)a to power n/b)
+
+- recurrence relation is used to describe function or sequence in terms of its previous values
+- used in mathematics and computer science to model problems where solution depends on previous states or values
+
+- recurrence relations are particularly useful in solving problems that can be broken down into smaller, similar subproblems
+- by expressing problem in terms of its subproblems, we can often develop efficient algorithms for solving it
+
+- in computer science, recurrence relations are commonly encountered in analysis of algorithms, especially when analyzing their time complexity
+- by defining recurrence relation for time complexity of algorithm, we can determine how running time grows as size of input increases
+
+- Master Theorem is tool used to analyze time complexity of algorithms that can be expressed using recurrence relations
+- it provides convenient way to determine asymptotic behavior of such algorithms without need for detailed analysis
 
 // --------------------------------------------------------------------------------------------------------
 2.3.1 Recurrence Relation Dividing Function 
@@ -1286,7 +1402,7 @@ Algorithm Test(int n)     -----T(n)
   if(n>1)                 
   {
     printf("/d",n);       ----- 1 
-    Test(n/2);            ----- T(n/2)
+    Test(n/2);            ----- T(n/2)         - it is called dividing functino because n is being devided by 2 
   } 
 }
 -------------
