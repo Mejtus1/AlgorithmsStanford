@@ -1433,6 +1433,8 @@ a to pwoer of b = c
 b = log c 
 O(log n)
 
+solving by substitution method: 
+
 T(n) = T(n/2) + 1                         ------ [1.] 
 
 T(n) = [T(n/2 to power of 2) + 1] + 1
@@ -1585,11 +1587,12 @@ T(n) = 1 + log n
 O(log n)
 
 // --------------------------------------------------------------------------------------------------------
-2.3.2 Recurrence relation - substitution
-
+2.3.2 Recurrence relation 
+ 
 T(n) = { 1                n = 1 }
        { T(n/2) + n       n > 1 }
 
+1. method: 
        T(n)                                           
      /      \
     n        T(n/2)                                       ----- n
@@ -1607,15 +1610,19 @@ T(n) = n + n/2 + n/2 (to power of 2) + n/2(to power of 3) + ... + n/2 to pwoer o
 T(n) = [ 1 + 1/2 + 1/2(to power of 2) + 1/2 (to power of 3) + ... + 1/2 to power of k]  
 
      __ k 
-    /
-= n \ 1 / 2 to power of i 
-    /
+    /                                              k                      ( Σ = sigma)
+= n \ 1 / 2 to power of i                        n Σ  1/2**i   =   1      
+    /                                            i = 0 
     \__ i = 0 
 = 1 
 
 = n * 1 
 T(n) = n 
 O(n)
+
+2. method 
+T(n) = { 1                n = 1 }
+       { T(n/2) + n       n > 1 }
 
 T(n) = T(n/2) + n                         ------ [1.] 
 
@@ -1649,13 +1656,13 @@ void Test(int n)            ----- T(n)
   }
 }
 ---------
-T(n) = 2T(n/2) + n
+T(n) = 2T(n/2) + n                     - 2T because algorithm is calling itself 2 times 
 
 T(n) = {1               n = 1 } 
        {2T(n/2) + n     n > 1 }
 
         T(n)
-     /   |   \
+     /   |   \                         - we have 3 branches because we are calling algorithm 2 times 
 T(n/2) T(n/2) n 
 
                  n 
@@ -1672,6 +1679,8 @@ T(n/2) T(n/2) n
   Assume n/2(to power of k) = 1 
   n = 2 to power of k 
   k = log n 
+
+- solve using back substitution method: 
 
 T(n) = 2T(n/2) + n --- [1.]    T(n) = 2T(n/2) + n 
         |                      T(n/2) = 2T(n/2 to pwoer of 2) + n / 2 
@@ -1696,7 +1705,88 @@ T(n) = 2(to power of k) T(1) + k n
 T(n) = n * 1 + n log n 
 O(n log n)
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Most used algorithms
+- most used algorithms can vary depending on application domain and specific problem requirements
+- some algorithms are widely applicable and commonly used across various fields due to their efficiency, effectiveness, and versatility
+Here are few examples:
+
+Sorting Algorithms: 
+- Quicksort, Merge Sort, and Heapsort... 
+- fundamental and widely used in various applications such as database management, operating systems, and computational biology
+
+Search Algorithms: 
+- Depth-First Search (DFS), Breadth-First Search (BFS), and Binary Search 
+- used in graph traversal, pathfinding, and searching in databases and arrays
+
+Dynamic Programming Algorithms: 
+- Longest Common Subsequence (LCS) algorithm, Knapsack problem, and Floyd-Warshall algorithm 
+- for all-pairs shortest paths are employed in optimization problems, resource allocation, and network routing
+
+Graph Algorithms: 
+- Graph algorithms like Dijkstra's algorithm for single-source shortest paths, Prim's algorithm for minimum spanning trees, and Tarjan's algorithm for strongly connected components 
+- network analysis, social network analysis, and transportation planning
+
+Machine Learning Algorithms: 
+- Linear Regression, Logistic Regression, Decision Trees, Random Forests, Support Vector Machines (SVM), and k-Nearest Neighbors (k-NN) 
+- widely used for classification, regression, clustering, and pattern recognition tasks
+
+String Matching Algorithms: 
+- Knuth-Morris-Pratt (KMP) algorithm, Rabin-Karp algorithm, and Boyer-Moore algorithm 
+- essential for text processing, pattern matching, and bioinformatics applications
+
+Numerical Algorithms: 
+numerical integration methods (e.g., Simpson's rule, trapezoidal rule), root-finding algorithms (e.g., Newton-Raphson method, bisection method) and linear algebra algorithms (e.g., Gaussian elimination, LU decomposition) 
+- indispensable in scientific computing, engineering simulations, and financial modeling
+
+These are just few examples of commonly used algorithms, and there are many more algorithms tailored to specific domains and applications. 
+The choice of algorithm depends on factors such as the problem's characteristics, input size, time and space constraints, and performance requirements.
+
+
 // --------------------------------------------------------------------------------------------------------
+Algorithm design paradigms besides divide and conquer
+Some of most common ones include:
+
+Greedy Algorithms: 
+- Greedy algorithms make locally optimal choices at each step with hope of finding global optimum
+- typically easy to implement and efficient, but may not always produce best solution
+- examples include Dijkstra's algorithm for finding the shortest path in graph and activity selection problem
+
+Dynamic Programming: 
+- Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once, storing solutions to subproblems in table to avoid redundant computations
+- examples include knapsack problem, longest common subsequence problem, and Floyd-Warshall algorithm for all-pairs shortest paths
+
+Backtracking: 
+- Backtracking is general algorithmic technique that incrementally builds solution by trying all possible candidates and backtracking when it determines that candidate cannot lead to valid solution
+-eExamples include depth-first search (DFS) and the N-queens problem
+
+Branch and Bound: 
+- Branch and bound is method for solving optimization problems by systematically searching space of possible solutions, pruning branches of search tree that cannot lead to optimal solution
+- it is often used in combinatorial optimization problems such as traveling salesman problem (TSP) and assignment problem
+
+Randomized Algorithms: 
+- randomized algorithms use randomization as part of their logic to make decisions or break ties, often leading to more efficient solutions or improved robustness 
+- examples include randomized quicksort and randomized primality testing algorithms
+
+
+// --------------------------------------------------------------------------------------------------------
+Master Theorem is mathematical tool used to determine time complexity of recursive algorithms that divide problem into subproblems of equal size
+- it provides way to analyze time complexity of such algorithms without explicitly solving their recurrence relations
+
+Master Theorem states that if recurrence relation for function T(n)
+T(n) can be written in the form:
+T(n) = a * T(n/b) + f(n) 
+where: 
+a = number of subproblems 
+b = factor by which a problem size is reduced 
+f(n) = is time complexity for dividing problem and combining the results
+
+then time complexity of function can be determined based on three cases:
+1. f(n) is O(n**logb a-ϵ) for some constant ϵ > 0, where logba represents exponent in division than time complexity is O(n**logba)
+2. f(n) = O(n**logba) than time complexity is O(n**logba log n)
+3. f(n) = O(n**logb a+ϵ) for some constant ϵ > 0 and if a * f(n/b) is bounded above by c * f(n) for some constant c < 1 and sufficiently large n, then time complexity is O(f(n))
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 2.4.1 Master theorem for Dividing functions 
 
 T(n) = aT(n/b) + f(n)
@@ -1714,11 +1804,13 @@ case 2: if log a = k
 case 3: if log a < k 
                if P >= 0 THETA(n(to power k)log n)
                if P < 0  THETA(n(to power of k))
+-------
+CASE 1: 
 
 T(n) = 2T(n/2) + 1 
 a = 2 
 b = 2 
-f(n) = THETA(1)
+f(n) = THETA(1)                     - cost of work done outside of recursive calls
      = THETA(n log n)
 k = 0, p = 0 
 
@@ -1726,66 +1818,78 @@ log 2 = 1 > k = 0
 case 1: THETA(n(to power of 1))
 
 T(n) = 4T(n/2) + n 
-log 4 = 2 > k = 1     p = 0 
+log 4 base 2 = 2 > k = 1     p = 0               - satisfies case 1: if log a > k then THETA(n (to power of log a))
 THETA(n to power of 2)
 
 T(n) = 8T(n/2) + n(to power of 2)
-log 8 = 3 > k = 2     p = 0
+log 8 base 2 = 3 > k = 2     p = 0               - satisfies case 1: if log a > k then THETA(n (to power of log a))
 THETA(n(to power of 3)) 
 
 T(n) = 9T(n/3) + n(to power of 1)
-log 9 = 2 > k = 1 
+log 9 base 3 = 2 > k = 1 
 THETA(n(to power of 2))
+
 T(n) = 9T(n/3) + n(to power of 2)
-log 9 = 2 = k = 2 
+log 9 base 3 = 2 = k = 2 
 O(n(to power of 2))
 
-T(n) = 8T(n/2) + n log n
-THETA(n to power of 3)
+T(n) = 8T(n/2) + n log n           - we check only power of n (in n log n) case, that is n to power of 1 
+log 8 base 2 = 3 
+THETA(n to power of 3)           
+
+-------
+CASE 2: 
 
 T(n) = 2T(n/2) + n(to power of 1)
-log 2 = 1   k = 1   P = 0 
+log 2 base 2 = 1   k = 1   P = 0                     - P is zero because there is no log inside function 
 THETA(n log n)
 
 T(n) = 4T(n/2) + n(to power of 2)
-log 4 = 2    k = 2 
-THETA(n(to power of 2) log n)
+log 4 = 2    k = 2                                   - P needs to be there to fact check, but it may be calculated in simplier terms 
+THETA(n**2 log n)                                    - whatever f(n) is just multiply it by n 
 
-T(n) = 4T(n/2) + n(to power of 2)log n
-log 4 = 2    k = 2 
-THETA(n(to power of 2) log(to powr of 2) n)
+T(n) = 4T(n/2) + n**2 log n                          - log 4 base 2 = k = 2 (they are same) we just take n**2 and multiply it by log n 
+log 4 base 2 = 2    k = 2                            - f(n) is 
+THETA(n**2 log**2 n)
 
-T(n) = 4T(n/2) + n(to power of 2)log(to power of 2) n
-log 4 = 2    k = 2 
-THETA(n(to power of 2) log(to powr of 3) n)
+T(n) = 4T(n/2) + n**2 log**2 n                       
+log 4 base 2 = 2    k = 2                            - just take n**2 and multiply by log n 
+THETA(n**2 log**3 n)
 
-T(n) = 4T(n/2) + n(to power of 2)log(to power of 5) n
-log 4 = 2    k = 2 
-THETA(n(to power of 2) log(to powr of 6) n)
+T(n) = 4T(n/2) + n**2 log**5 n
+log 4 base 2 = 2    k = 2                            - equal 2 = 2 
+THETA(n**2 log**6 n)                           
 
-T(n) = 8T(n/2) + n(to power of 3)
-log 8 = 3    k = 3
-THETA(n(to power of 3) log n)
+T(n) = 8T(n/2) + n**3
+log 8 = 3    k = 3                                  - equal 3 = 3 
+THETA(n**3 log n)
 
 T(n) = 2T(n/2) + n(to power of 1)/log n
 log 2 = 1   k = 1   p = -1 
-THETA(n log logn)
+THETA(n loglog n)
 
 T(n) = 2T(n/2) + n(to power of 1)/log(to power of -2) n
 log 2 = 1   k = 1   p = -2 
 THETA(n)
 
-T(n) = T(n/2) + n(to power of 2)
-log(to power of 1) = 0 < k = 2 
-THETA(n(to power of 2))
+-------
+Case 3: 
 
-T(n) = 2T(n/2) + n(to power of 2)
-log(to power of 2) = 1 < k = 2 
-THETA(n(to power of 2))
+T(n) = T(n/2) + n**2 
+log 1 base 2 = 0 < k = 2 
+THETA(n**2)
 
-T(n) = 2T(n/2) + n(to power of 2) log n 
-log(to power of 2) = 1 < k = 2 
-THETA(n(to power of 2)log(to power of 2) n)
+T(n) = 2T(n/2) + n**2
+log 2 base 2 = 1 < k = 2 
+THETA(n**2)
+
+T(n) = 2T(n/2) + n**2 log n 
+log 2 base 2 = 1 < k = 2         - since right side is bigger than left, we just take + part of function as it is == n**2 log n 
+THETA(n**2 log n)
+
+T(n) = 2T(n/2) + n**2 log**2 n 
+log 2 base 2 = 1 < k = 2         - since right side is bigger than left, we just take + part of function as it is == n**2 log**2 n
+THETA(n**2 log**2 n)
 
 T(n) = 4T(n/2) + n(to power of 3)
 log(to power of 2) = 2 < k = 3
