@@ -1960,72 +1960,77 @@ THETA(loglog n)
 // --------------------------------------------------------------------------------------------------------
 2.6.1 Binary search Iterative method 
 
-A 3 6 8 12 14 17 25 29 31 36 42 47 53 55 62
+A 3 6 8 12 14 17 25 29 31 36 42 47 53 55 62          - list of elements 
   1 2 3 4  5  6  7  8  9  10 11 12 13 14 15 
+
+- how binary search works ? 
 
 3 < -- l 
 62 < -- h 
 
 key = 42 
+l = low 
+h = high 
 ________________________________
-| l  |  h  |   mid = l + h / 2 |
+| l  |  h  |   mid =(l + h) /2 |    - /2 because value we check if value we are looking for in sorted list is greater than middle of sorted list, if yes we cen discard first hakf 
+|----|-----|-------------------|    
+| 1  |  15 |  1 + 15 / 2 = 8   |    - 1. we are in half of list now 
 |----|-----|-------------------|
-| 1  |  15 |  1 + 15 / 2 = 8   |
+| 9  |  15 | 9 + 15 / 2 = 12   |    - 2. we are in half of list second time, our number is smaller so it must be behind 
 |----|-----|-------------------|
-| 9  |  15 | 9 + 15 / 2 = 12   |
+| 9  |  11 | 9 + 11 / 2 = 10   |    - 3. not number we are looking for, but list is now narrowed 
 |----|-----|-------------------|
-| 9  |  11 | 9 + 11 / 2 = 10   |
-|----|-----|-------------------|
-| 11 |  11 | 11 + 11 / 2 = 11  |
+| 11 |  11 | 11 + 11 / 2 = 11  |    - 4. element is found 
 |----|-----|-------------------|
 
 key = 12 
 ________________________________
-| l  |  h  |   mid = l + h / 2 |
+| l  |  h  |   mid = l + h / 2 |     - searching for 12, 
 |----|-----|-------------------|
-| 1  |  15 |  1 + 15 / 2 = 8   |
+| 1  |  15 |  1 + 15 / 2 = 8   |     - 1. mid = 8 
 |----|-----|-------------------|
-| 1  |   7 | 1 + 7 / 2 = 4     |
+| 1  |   7 | 1 + 7 / 2 = 4     |     - 2. search successfull 
 |----|-----|-------------------|
 
 key = 30 
 ________________________________
-| l  |  h  |   mid = l + h / 2 |
+| l  |  h  |   mid = l + h / 2 |     - searching for element which is not in list, 
 |----|-----|-------------------|
-| 1  |  15 |  1 + 15 / 2 = 8   |
+| 1  |  15 |  1 + 15 / 2 = 8   |     - 1. mid = 8 
 |----|-----|-------------------|
-| 9  |  15 | 9 + 15 / 2 = 12   |
+| 9  |  15 | 9 + 15 / 2 = 12   |     - 2. mid = 12 
 |----|-----|-------------------|
-| 9  |  11 | 9 + 11 / 2 = 10   |
+| 9  |  11 | 9 + 11 / 2 = 10   |     - 3. mid = 10 
 |----|-----|-------------------|
-| 9  |  9  | 9 + 9 / 2 = 9     |
+| 9  |  9  | 9 + 9 / 2 = 9     |     - 4. mid = 9 
 |----|-----|-------------------|
-| 9  |  8  | X X X X X X X X X |
+| 9  |  8  | X X X X X X X X X |     - high = 8, low = 9 (low crosses high, which means we did not find the element) 
 |----|-----|-------------------|
 
 int BinSearch(A, n, key)
 {
-  l = i; h = n; 
-  while(l <= h)
+  l = 1; h = n;                        - low = 1, high = n 
+  while(l <= h)                        - (this is last part of writing this algorithm) if low crosses high, elemenet is not found 
   {
-    mid=(l+h)/2;
-    if(key==A[mid])
-      return mid;
-    if(key<A[mid])
-        h = mid - 1;
+    mid=(l+h)/2;                       - mid = low + high, sum divided by 2 
+    if(key==A[mid])                    - checks if key is mid, if so element is found 
+      return mid;                      - and is returned 
+    if(key<A[mid])                     - check if key elements is less than key < mid 
+        h = mid - 1;                   - high = f-1 
     else 
-        l = mid+1;
+        l = mid+1;                     - else low should change to low + 1 
   }
-  return 0;
+  return 0;                            
 }
 
-                  8
+                  8                 - 1. middle is 8 
                 /   \
-               4      12
+               4      12            - 2. left side middle = 4, right side middle = 12 
              /  \    /   \
-            2   6    10  14 
+            2   6    10  14         - 3. left side of 4 = 2, right side of 4 = 6; left side of 12 = 10, right side of 12 = 14 
            / \ / \  / \  / \
-           1 3 5 7  9 11 13 15
+           1 3 5 7  9 11 13 15      - ... 
+
 15 + 1 = 16, log 16 = 4 
 
 min ----- 1 O(1)
@@ -2036,30 +2041,30 @@ max ----- log n O(log n)
 
 A 3 6 8 12 14 17 25 29 31 36 42 47 53 55 62
   1 2 3 4  5  6  7  8  9  10 11 12 13 14 15 
-
-Algorithm RbinSearch(l,h,key)    ----- T(n)
-{
-  if(l==h)
+                                                                            - in masters theorem we can categorize our problem if it is large or small, and we can split it into subproblems 
+Algorithm RbinSearch(l,h,key)    ----- T(n)                                  
+{                                                                           - SMALL PROBLEM 
+  if(l==h)                                                                  - if low == high, that means there is a single element
   {
-    if(A[l]==key)                            ----- 1 
+    if(A[l]==key)                            ----- 1                        - if A of low is key, return it 
         return l; 
-    else
-        return 0; 
+    else 
+        return 0;                                                           - if there is a single element key, return element, otherwise return 0                                                       
   }
-  else
+  else                                                                      - LARGE PROBLEM
   {
-    mid = (l + h)/2;                          ----- 1 
-    if(key = A[mid])                          ----- 1 
+    mid = (l + h)/2;                          ----- 1                       - mid is low + high, both divided by 2 
+    if(key = A[mid])                          ----- 1                       - if key is mid, return mid 
          return mid;  
-    if(key < A[mid])                          ----- 1 
+    if(key < A[mid])                          ----- 1                       - if key is smaller than mid, return 1. RbinSearch -1
          return RbinSearch(l,mid -l, key);
     else                                      ----- T(n/2)
-         return RbinSearch(mid + l, h, key);
+         return RbinSearch(mid + l, h, key);                                - if key is bigger than mid, return 2. RbinSearch +1 
   }
 }
 
-T(n) = {1             n = 1 }
-       {T(n/2) + 1    n > 1 }
+T(n) = {1             n = 1 }                   - algorithm takes 1 time if number of elements is 0 (n = 1) 
+       {T(n/2) + 1    n > 1 }                   - if n is bigger than 1, algorithm will call itself n / 2 times 
 T(n) = T(n/2) + 1 
 log(to power of 1) = 0 
 O(log n)
@@ -2075,19 +2080,36 @@ O(log n)
 6. Heapify 
 7. Priority Queue 
 
+1. Representation of binary tree Using ARRAY 
+
      A                  A                  A 
     / \                / \                / \
    B   C               B  C              B   C 
   / \ / \             / \                   / \
   D E F  G            D E                   D  E
 
-(T)A B C D E F G       A B C D E         A B C - - D E 
+(T)A B C D E F G       A B C D E         A B C - - D E       - in example 3, it si REALLY IMPORTANT to left blank spaces, because binary trees representation using arrays will be wrong and formulas wont work 
    1 2 3 4 5 6 7       1 2 3 4 5         1 2 3 4 5 6 7 
 
-if a Node is at index ----- i 
-its left child is at  ----- 2 * 1 
+if a Node is at index ----- i                                - realitionship between binary tree elements are represented by these formulas 
+its left child is at  ----- 2 * i                            
 its right child is at ----- 2 * i + 1 
 its parent is at      ----- i / 2 
+
+B = index 2 
+- left child is 2 * 2 = 4 == D
+- right child is 2 * 2 + 1 = 5 == E 
+- parent is 2 / 2 = 1 == A 
+
+C = index 3 
+- left child is 2 * 3 = 6 == F 
+- right child is 2 * 3 + 1 = 7 == G
+- parent is 3 / 2 = 1.5 (floor value) = 1 == A 
+
+G = 7
+- parent = 7 / 2 = 3.5 (floor value) = 3 == C
+
+
 
 Is this binary tree ? 
 
